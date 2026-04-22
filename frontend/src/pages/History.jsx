@@ -6,8 +6,13 @@ export default function History() {
   const predictions = useAppStore((state) => state.predictions);
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8">Scan History (Local Session)</h1>
+    <div className="max-w-5xl mx-auto py-8 px-4">
+      <div className="mb-8 rounded-2xl bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-800 p-6 text-white shadow">
+        <h1 className="text-3xl font-bold">Scan History (Local Session)</h1>
+        <p className="mt-1 text-emerald-100">
+          Recent crop analysis outcomes from this browser session.
+        </p>
+      </div>
       {predictions.length === 0 ? (
         <div className="text-center py-20 text-gray-500 bg-white rounded-xl">
           No predictions made yet in this session.
@@ -28,7 +33,7 @@ export default function History() {
                 : "info");
 
             return (
-              <Card key={i} className="p-4">
+              <Card key={i} className="p-4 border border-emerald-100">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                   <div>
                     <h3 className="font-bold text-lg">

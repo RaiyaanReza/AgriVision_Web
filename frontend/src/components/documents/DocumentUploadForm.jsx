@@ -109,13 +109,13 @@ export const DocumentUploadForm = ({ onSuccess }) => {
       </div>
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">
-          File (PDF/TXT)
+          File (PDF/JSON/TXT)
         </label>
         <input
           type="file"
           className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm"
           onChange={(e) => setFile(e.target.files[0])}
-          accept=".pdf,.txt"
+          accept=".pdf,.json,.txt"
           required
         />
       </div>

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { Upload, X } from "lucide-react";
+import { LoaderCircle, Upload, X } from "lucide-react";
 import { Button } from "../ui/Button";
 
 export const ImageUploadZone = ({
@@ -27,12 +27,26 @@ export const ImageUploadZone = ({
 
   if (previewUrl) {
     return (
-      <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-lg border-2 border-gray-200">
+      <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-lg border border-emerald-200/70">
         <img
           src={previewUrl}
           alt="Preview"
           className="w-full h-full object-cover"
         />
+        {isLoading && (
+          <div className="absolute inset-0 bg-slate-900/35 backdrop-blur-[1px]">
+            <motion.div
+              initial={{ y: "-20%" }}
+              animate={{ y: "105%" }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+              className="absolute left-0 right-0 h-16 bg-gradient-to-b from-transparent via-emerald-300/55 to-transparent"
+            />
+            <div className="absolute inset-x-0 bottom-4 flex items-center justify-center gap-2 text-sm font-medium text-white">
+              <LoaderCircle className="h-4 w-4 animate-spin" />
+              Processing image...
+            </div>
+          </div>
+        )}
         <button
           onClick={onClear}
           disabled={isLoading}
@@ -47,20 +61,20 @@ export const ImageUploadZone = ({
   return (
     <div
       {...getRootProps()}
-      className={`w-full h-64 md:h-96 border-4 border-dashed rounded-xl flex flex-col items-center justify-center p-6 cursor-pointer transition-colors duration-200 ${
+      className={`w-full h-64 md:h-96 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-6 cursor-pointer transition-colors duration-200 ${
         isDragActive
           ? "border-agri-primary bg-agri-primary/10"
-          : "border-gray-300 hover:border-agri-primary/50"
+          : "border-emerald-300/70 bg-gradient-to-br from-emerald-50 to-teal-50 hover:border-agri-primary/60"
       } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
     >
       <input {...getInputProps()} />
-      <Upload size={48} className="text-gray-400 mb-4" />
-      <p className="text-lg text-gray-600 text-center mb-2">
+      <Upload size={44} className="text-emerald-700 mb-4" />
+      <p className="text-lg text-slate-700 text-center mb-2 font-medium">
         {isDragActive
           ? "Drop the image here..."
           : "Drag & drop a crop image here"}
       </p>
-      <p className="text-sm text-gray-400 mb-6">
+      <p className="text-sm text-slate-500 mb-6">
         or click to select files (JPEG, PNG, WEBP)
       </p>
       <Button type="button" variant="outline" disabled={isLoading}>

@@ -68,7 +68,7 @@ export const deleteDocument = async (id) => {
 
 export const queryRAG = async (question, cropType) => {
   try {
-    const response = await api.post("/rag/query", { question, cropType });
+    const response = await api.post("/rag/query", { question, cropType, llm: true });
     return response.data;
   } catch {
     const docs = readLocalDocs();

@@ -2,10 +2,10 @@
 
 /* Custom Theme Extensions */
 @theme {
-  --color-agri-primary: #10b981;
-  --color-agri-secondary: #059669;
-  --color-agri-accent: #f59e0b;
-  --color-agri-bg: #f8fafc;
+  --color-agri-primary: #0f766e;
+  --color-agri-secondary: #065f46;
+  --color-agri-accent: #34d399;
+  --color-agri-bg: #f0f7f5;
   
   --font-sans: 'Inter', system-ui, sans-serif;
   
@@ -26,6 +26,22 @@
 @layer base {
   body {
     @apply bg-agri-bg text-slate-800 antialiased;
+  }
+
+  h1 {
+    @apply tracking-tight;
+  }
+
+  h2 {
+    @apply tracking-tight;
+  }
+
+  h3 {
+    @apply tracking-tight;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-agri-primary) 25%, white);
   }
 }
 
