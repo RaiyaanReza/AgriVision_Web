@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Database, FileText, Search, Sparkles } from "lucide-react";
 import { useDocuments } from "../hooks/useDocuments";
 import { useRAGQuery } from "../hooks/useRAGQuery";

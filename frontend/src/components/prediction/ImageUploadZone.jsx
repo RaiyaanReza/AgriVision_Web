@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { motion } from "framer-motion";
 import { LoaderCircle, Upload, X } from "lucide-react";
 import { Button } from "../ui/Button";
 

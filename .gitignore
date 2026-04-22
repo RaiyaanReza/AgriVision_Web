@@ -72,6 +72,8 @@ Models/
 # ============================================
 uploads/
 temp/
+backend/data/
+*.db
 *.jpg
 *.jpeg
 *.png
