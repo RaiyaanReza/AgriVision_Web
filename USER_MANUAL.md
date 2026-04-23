@@ -93,7 +93,7 @@ Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/rag/query -Body '{
 
 ## 📁 System Architecture
 
-- **Backend:** FastAPI (Python) + YOLOv8 (Inference).
+- **Backend:** FastAPI (Python) + YOLO26-cls (Inference).
 - **Workflow:** LangGraph for agentic routing between crop classifier and disease specialists.
 - **Frontend:** React (Vite) + Tailwind CSS + Lucide Icons + Framer Motion.
 - **Data:** SQLite for local treatment knowledge storage.

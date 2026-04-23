@@ -14,6 +14,8 @@ import { TreatmentSuggestion } from "../components/prediction/TreatmentSuggestio
 import { LoadingSpinner } from "../components/ui/LoadingSpinner";
 import { Button } from "../components/ui/Button";
 
+const MotionDiv = motion.div;
+
 const featureCards = [
   {
     title: "Fast AI Diagnosis",
@@ -175,7 +177,7 @@ export default function Home() {
 
       <AnimatePresence mode="wait">
         {result && (
-          <motion.div
+          <MotionDiv
             key="results"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -192,7 +194,7 @@ export default function Home() {
                 once the external LLM provider is connected.
               </div>
             )}
-          </motion.div>
+          </MotionDiv>
         )}
       </AnimatePresence>
     </div>

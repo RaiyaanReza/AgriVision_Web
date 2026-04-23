@@ -10,6 +10,8 @@ import { Modal } from "../components/ui/Modal";
 import { Button } from "../components/ui/Button";
 import { LoadingSpinner } from "../components/ui/LoadingSpinner";
 
+const MotionDiv = motion.div;
+
 export default function Treatments() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState("grid");
@@ -41,7 +43,7 @@ export default function Treatments() {
   };
 
   return (
-    <motion.div
+    <MotionDiv
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
@@ -137,7 +139,7 @@ export default function Treatments() {
 
         <AnimatePresence mode="wait">
           {isRagPending && (
-            <motion.div
+            <MotionDiv
               key="rag-loading"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -145,7 +147,7 @@ export default function Treatments() {
               className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800"
             >
               Searching knowledge documents...
-            </motion.div>
+            </MotionDiv>
           )}
         </AnimatePresence>
 
@@ -167,7 +169,7 @@ export default function Treatments() {
         {ragData?.results?.length > 0 ? (
           <div className="mt-4 space-y-3">
             {ragData.results.map((item, index) => (
-              <motion.div
+              <MotionDiv
                 key={`${item.title}-${index}`}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -182,7 +184,7 @@ export default function Treatments() {
                 {item.snippet ? (
                   <p className="text-sm mt-1 text-gray-700">{item.snippet}</p>
                 ) : null}
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
         ) : null}
@@ -241,6 +243,6 @@ export default function Treatments() {
       >
         <DocumentUploadForm onSuccess={() => setIsModalOpen(false)} />
       </Modal>
-    </motion.div>
+    </MotionDiv>
   );
 }

@@ -9,7 +9,7 @@ export default function About() {
           knowledge.
         </p>
         <p>
-          We use a custom YOLOv8 integration to power fast and accurate
+          We use a custom YOLO26-cls integration to power fast and accurate
           detection pipelines directly from the frontend interface with Python
           backend processing via RAG technology.
         </p>

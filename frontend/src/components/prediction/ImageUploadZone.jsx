@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { LoaderCircle, Upload, X } from "lucide-react";
 import { Button } from "../ui/Button";
 
+const MotionDiv = motion.div;
+
 export const ImageUploadZone = ({
   onUpload,
   onClear,
@@ -36,7 +38,7 @@ export const ImageUploadZone = ({
         />
         {isLoading && (
           <div className="absolute inset-0 bg-slate-900/35 backdrop-blur-[1px]">
-            <motion.div
+            <MotionDiv
               initial={{ y: "-20%" }}
               animate={{ y: "105%" }}
               transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}

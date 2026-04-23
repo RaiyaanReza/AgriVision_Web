@@ -3,9 +3,9 @@
 AgriVision is a crop disease detection prototype that combines a YOLO-based diagnosis pipeline with a React frontend and a FastAPI backend. The project now also includes a lightweight SQLite-backed treatment knowledge base scaffold so document upload and RAG-style retrieval can be demonstrated locally without external API keys.
 
 ## 🏗️ Project Architecture
-- **Phase 1: Crop Classification** - A YOLOv8 classification model detects the type of crop in the image.
+- **Phase 1: Crop Classification** - A YOLO26-cls classification model detects the type of crop in the image.
 - **Phase 2: Agentic Routing** - Using LangGraph, a `router_agent` checks the confidence of the crop detection. If confidence < 0.6, it halts the pipeline with an error. If >= 0.6, it routes to the specific disease model.
-- **Phase 3: Disease Detection** - A crop-specific YOLOv8 model (e.g., Potato, Rice, Corn) is loaded dynamically to detect the specific disease or health status.
+- **Phase 3: Disease Detection** - A crop-specific YOLO26-cls model (e.g., Potato, Rice, Corn) is loaded dynamically to detect the specific disease or health status.
 - **Phase 4: API & Frontend** - A FastAPI backend serves prediction, document, and RAG-ready endpoints, while a React (Vite) frontend provides the user interface.
 - **Phase 5: Knowledge Base Scaffold** - Treatment files can now be stored in SQLite, queried through a local retrieval endpoint, and later upgraded to LangChain/LLM-backed responses when API keys are added.
 
