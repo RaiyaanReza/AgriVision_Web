@@ -67,6 +67,27 @@ The frontend was already componentized, and was further modularized by extractin
   - frontend/src/pages/Home.jsx
   - frontend/src/pages/Treatments.jsx
 
+- Additional modularization (design-ready split for manual restyling):
+  - frontend/src/pages/History.jsx now composes:
+    - frontend/src/components/history/HistoryHero.jsx
+    - frontend/src/components/history/HistoryListSection.jsx
+    - frontend/src/components/history/HistoryPredictionCard.jsx
+  - frontend/src/pages/About.jsx now composes:
+    - frontend/src/components/about/AboutHero.jsx
+    - frontend/src/components/about/AboutContent.jsx
+  - frontend/src/pages/Treatments.jsx now composes:
+    - frontend/src/components/treatments/TreatmentsHeader.jsx
+    - frontend/src/components/treatments/DocumentToolbar.jsx
+    - frontend/src/components/treatments/DocumentCollectionSection.jsx
+    - frontend/src/components/treatments/UploadDocumentModal.jsx
+
+- Home solution flow modularization (auto detect -> API -> solution):
+  - frontend/src/hooks/useDiseaseSolution.js
+  - frontend/src/components/home/ScanExperienceSection.jsx
+  - frontend/src/components/home/InsightRibbon.jsx
+  - frontend/src/components/home/ResultsStage.jsx
+  - frontend/src/components/prediction/DiseaseSolutionPanel.jsx
+
 This reduces page complexity and makes feature sections easier to maintain/test independently.
 
 ## Test Script Update
@@ -96,6 +117,24 @@ Current structure is good and close to feature-oriented design. Recommended dire
 
 Optional next modularization step:
 - Introduce src/features/<feature-name>/ to co-locate feature-specific components, hooks, and helper constants.
+
+## Manual Run Notes
+
+- Backend local URL: http://127.0.0.1:8000
+- Frontend local URL: http://127.0.0.1:5173
+- Keep both servers running in background while manually testing routes:
+  - /
+  - /treatments
+  - /history
+  - /about
+
+## Latest Verification (2026-04-24)
+
+- Frontend route rendering verified in browser:
+  - /treatments loads modular header, toolbar, RAG query section, and document collection section.
+  - /history loads modular history hero and history list section.
+  - /about loads modular hero and about content card grid.
+- Home detect-to-solution pipeline remains active and unchanged in this pass.
 
 ## Known Notes
 
