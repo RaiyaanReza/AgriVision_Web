@@ -1,92 +1,104 @@
-# AgriVision Project Context
+# AgriVision Project Context (Updated: 2026-04-24)
 
-AgriVision is a crop disease detection prototype that combines a YOLO-based diagnosis pipeline with a React frontend and a FastAPI backend. The project now also includes a lightweight SQLite-backed treatment knowledge base scaffold so document upload and RAG-style retrieval can be demonstrated locally without external API keys.
+AgriVision is a crop disease detection prototype with:
+- FastAPI backend for prediction, document management, and RAG querying
+- YOLO-based crop + disease workflow with LangGraph routing
+- React + Vite frontend with modular pages/components
+- SQLite local knowledge base for treatment documents
+- Optional Gemini-backed RAG answer generation when API keys are configured
 
-## 🏗️ Project Architecture
-- **Phase 1: Crop Classification** - A YOLO26-cls classification model detects the type of crop in the image.
-- **Phase 2: Agentic Routing** - Using LangGraph, a `router_agent` checks the confidence of the crop detection. If confidence < 0.6, it halts the pipeline with an error. If >= 0.6, it routes to the specific disease model.
-- **Phase 3: Disease Detection** - A crop-specific YOLO26-cls model (e.g., Potato, Rice, Corn) is loaded dynamically to detect the specific disease or health status.
-- **Phase 4: API & Frontend** - A FastAPI backend serves prediction, document, and RAG-ready endpoints, while a React (Vite) frontend provides the user interface.
-- **Phase 5: Knowledge Base Scaffold** - Treatment files can now be stored in SQLite, queried through a local retrieval endpoint, and later upgraded to LangChain/LLM-backed responses when API keys are added.
+## Verified Runtime Status
 
-## 📁 File Structure & Specific Paths
+### Backend
+- Entry: backend/main.py
+- Server command:
+  - & "e:/CSE499 Prototype/.venv/Scripts/python.exe" -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+- Health endpoint verified:
+  - GET /api/health -> 200 {"status":"ok"}
 
-### 🧬 Core Backend (Python 3.10+)
-- `backend/main.py`: FastAPI application entry point, CORS, startup DB init, and API routes for health, prediction, documents, and RAG querying.
-- `backend/config.py`: Configuration for confidence thresholds and model path mappings.
-- `backend/schemas/response.py`: Pydantic models for API request/response validation.
-- `backend/services/image_processor.py`: PIL-based image validation, resizing (640x640), and preprocessing.
-- `backend/services/knowledge_base.py`: SQLite-backed document storage and local retrieval logic for treatment knowledge queries.
-- `backend/models/crop_classifier.py`: YOLO wrapper for the base `Crops Classifier` model.
-- `backend/models/disease_models.py`: `DiseaseModelRegistry` class for dynamic loading of specialized crop models.
+### Models and Prediction
+- Verified with real sample images and explicit MIME upload
+- Prediction endpoint verified:
+  - POST /api/predict -> 200 with success=true
+- Observed successful inference examples:
+  - Brassica sample image routed to Potato model with disease output
+  - Potato sample image detected with disease output
+  - Rice sample image detected with disease output
 
-### 🤖 AI Agents (LangGraph)
-- `backend/agents/state.py`: `WorkflowState` (TypedDict) defining the image, crop_result, disease_result, and route_decision.
-- `backend/agents/router_agent.py`: `crop_classifier_node` - Logic for determining if the crop is valid and routing next.
-- `backend/agents/disease_agent.py`: `disease_detector_node` - Logic for invoking the registry and running disease inference.
-- `backend/agents/workflow.py`: `StateGraph` definition, node registration, conditional edges, and the `run_workflow` runner.
+### Documents and RAG
+- SQLite knowledge base initialized and working
+- Verified endpoints:
+  - POST /api/documents/import -> created records
+  - GET /api/documents -> returns stored docs
+  - DELETE /api/documents/{id} -> deletion confirmed
+  - POST /api/rag/query with llm=false -> local retrieval results
+  - POST /api/rag/query with llm=true -> Gemini answer generated after dependency fix
 
-### 🧠 Model Weights (.pt)
-- `Models/Crops Classifier/best.pt`: Initial classifier (detects: Rice, Potato, Corn, Brassica, etc.)
-- `Models/Brassica/best.pt`: Specific disease model for Brassica.
-- `Models/Corn/best.pt`: Specific disease model for Corn.
-- `Models/Potato/best.pt`: Specific disease model for Potato.
-- `Models/Rice/best.pt`: Specific disease model for Rice.
+### Gemini / API Key Path
+- Environment has GEMINI_API_KEY_* variables in .env
+- Critical fix applied in venv dependencies:
+  - Installed python-dotenv (for loading .env)
+  - Installed google-genai (Gemini client)
+- Result:
+  - LLM path now returns llm.enabled=true and non-empty answer text
 
-### 🖼️ Test Assets
-- `Models/Test Images/`: Exhaustive directory categorized by [Crop]__[Disease] containing sample .jpg files for verification.
+## Frontend Status
 
-### 🎨 Frontend (React + Vite)
-- `frontend/src/App.jsx`: Route shell that lazy-loads `Home`, `Treatments`, `History`, and `About`.
-- `frontend/src/main.jsx`: React mount point.
-- `frontend/src/index.css`: Tailwind CSS entry point with the darker green theme tokens.
-- `frontend/src/App.css`: Present but currently empty.
-- `frontend/src/pages/Home.jsx`: Main diagnosis page with premium gradient hero, feature cards, upload/result workflow, and lightweight motion transitions.
-- `frontend/src/pages/Treatments.jsx`: Knowledge base management page with document search, upload modal, and RAG query UI.
-- `frontend/src/pages/History.jsx`: Local session history view for previous scan results.
-- `frontend/src/components/prediction/ImageUploadZone.jsx`: Upload area with improved grid-like presentation, preview handling, and processing overlay motion.
-- `frontend/src/components/documents/DocumentUploadForm.jsx`: Upload form for PDF/JSON/TXT knowledge documents plus metadata.
-- `frontend/src/services/documentService.js`: Frontend service layer for `/documents` and `/rag/query`, with local fallback behavior if backend endpoints are unavailable.
-- `frontend/package.json`: Frontend dependency list.
+### Build and Lint
+- Lint command:
+  - npm run lint
+- Build command:
+  - npm run build
+- Build succeeds and produces production bundle in frontend/dist
 
-## ✅ Current Frontend Readiness
-- The frontend is functional and componentized under `src/pages/`, `src/components/`, `src/hooks/`, and `src/services/`.
-- The homepage has already been upgraded with a darker green gradient style and smooth but lightweight motion.
-- The image upload area has been improved so preview and processing states look cleaner and more modern.
-- The Treatments page supports document upload and query UI against the backend knowledge base.
-- The History page is active and visually aligned with the updated theme.
+### Modularization Update Applied
+The frontend was already componentized, and was further modularized by extracting page-level blocks:
 
-## 🚀 Execution Commands
-- **Backend (recommended on this machine):** `& "E:\CSE499 Prototype\backend\venv\Scripts\python.exe" -m uvicorn backend.main:app --host 0.0.0.0 --port 8000`
-- **Frontend:** `cd frontend; npm run dev -- --host 0.0.0.0 --port 5173`
+- New home components:
+  - frontend/src/components/home/HomeHero.jsx
+  - frontend/src/components/home/FeatureHighlights.jsx
+  - frontend/src/components/home/ScanWorkflowCard.jsx
 
-## 🛠️ API Interface
-- **GET /api/health**
-  - Output: `{ "status": "ok" }`
-- **POST /api/predict**
-  - Input: `multipart/form-data` with field `image`
-  - Output: `PredictResponse` (JSON) containing `success`, `crop_result`, and `disease_result` (with boxes).
-- **GET /api/documents**
-  - Output: list of uploaded treatment knowledge documents from SQLite.
-- **POST /api/documents**
-  - Input: `multipart/form-data` with fields `file`, `title`, `crop_type`, `disease_name`, `content`, `tags`
-  - Output: stored document record.
-- **DELETE /api/documents/{doc_id}**
-  - Output: deletion confirmation JSON.
-- **POST /api/rag/query**
-  - Input: JSON with `question`, optional `cropType`/`crop_type`, and optional `disease_name`
-  - Output: ranked local retrieval results and source document references.
+- New treatments components:
+  - frontend/src/components/treatments/KnowledgeStatusBanner.jsx
+  - frontend/src/components/treatments/RAGQuerySection.jsx
 
-## 🗄️ Current Knowledge Base Status
-- SQLite persistence is implemented via `backend/services/knowledge_base.py`.
-- Uploaded documents can be stored and queried without any external API key.
-- JSON/TXT-style content is extractable today; PDF upload is accepted, with placeholder extraction behavior ready for future parser integration.
-- The current retrieval mode is local and deterministic, intended as a safe bridge to future LangChain + LLM integration.
-- The database is local-only and ignored by git via `.gitignore`.
+- Refactored pages:
+  - frontend/src/pages/Home.jsx
+  - frontend/src/pages/Treatments.jsx
 
-## 💡 Important Context for LLMs
-- The workflow state includes a PIL `Image` object which is not serializable by default LangGraph checkpointers.
-- `CROP_NAME_MAPPING` in `config.py` or `router_agent.py` may be used to align YOLO class labels with folder-based model keys.
-- All backend imports use **Relative Imports** (e.g., `from ..config import ...`).
-- The frontend is no longer a single-file UI; design changes should target the relevant page/component instead of assuming everything lives in `App.jsx`.
-- The backend is intentionally kept runnable without cloud dependencies; future LLM integration should be additive and must not break local fallback behavior.
+This reduces page complexity and makes feature sections easier to maintain/test independently.
+
+## Test Script Update
+
+test_models.py was updated to be a more reliable integration smoke test:
+- Uses real existing image paths
+- Sends explicit image MIME type for /api/predict
+- Validates health, prediction, document import/list, and RAG (LLM enabled)
+
+## Current Folder Structure Guidance
+
+Current structure is good and close to feature-oriented design. Recommended direction:
+
+- Keep backend split by domain:
+  - backend/agents for orchestration logic
+  - backend/models for model wrappers/registry
+  - backend/services for infrastructure adapters (RAG, DB, image IO)
+  - backend/schemas for API contracts
+
+- Keep frontend split by UI surface + behavior:
+  - src/pages for route-level composition only
+  - src/components/<feature> for reusable visual blocks
+  - src/hooks for server-state and workflow hooks
+  - src/services for API clients only
+  - src/store for shared UI/app state
+  - src/utils for pure helpers/constants
+
+Optional next modularization step:
+- Introduce src/features/<feature-name>/ to co-locate feature-specific components, hooks, and helper constants.
+
+## Known Notes
+
+- Legacy test calls without MIME type will fail predict endpoint validation by design.
+- Crop label mapping in backend/config.py currently includes fallback mappings (for example Solanacea -> Potato, Wheat -> Rice), so some class outputs are intentionally remapped.
+- Knowledge base currently uses deterministic local retrieval with optional Gemini answer generation layered on top.

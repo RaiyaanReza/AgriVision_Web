@@ -4,7 +4,7 @@ import { queryRAG } from "../services/documentService";
 
 export const useRAGQuery = () => {
   return useMutation({
-    mutationFn: ({ question, cropType }) => queryRAG(question, cropType),
+    mutationFn: (payload) => queryRAG(payload),
     onError: (err) => {
       toast.error(
         err?.response?.data?.detail || "Failed to query treatment knowledge base",

@@ -66,9 +66,19 @@ export const deleteDocument = async (id) => {
   }
 };
 
-export const queryRAG = async (question, cropType) => {
+export const queryRAG = async (payload) => {
+  const question = payload?.question || "";
+  const cropType = payload?.cropType;
+  const diseaseName = payload?.diseaseName;
+  const llm = payload?.llm ?? true;
+
   try {
-    const response = await api.post("/rag/query", { question, cropType, llm: true });
+    const response = await api.post("/rag/query", {
+      question,
+      cropType,
+      disease_name: diseaseName,
+      llm,
+    });
     return response.data;
   } catch {
     const docs = readLocalDocs();
@@ -77,8 +87,11 @@ export const queryRAG = async (question, cropType) => {
       const matchesCrop = cropType
         ? (doc.crop_type || "").toLowerCase().includes(cropType.toLowerCase())
         : true;
+      const matchesDisease = diseaseName
+        ? (doc.disease_name || "").toLowerCase().includes(diseaseName.toLowerCase())
+        : true;
       const text = `${doc.title || ""} ${doc.disease_name || ""} ${doc.content || ""}`.toLowerCase();
-      return matchesCrop && (!q || text.includes(q));
+      return matchesCrop && matchesDisease && (!q || text.includes(q));
     });
 
     return {
