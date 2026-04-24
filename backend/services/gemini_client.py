@@ -45,20 +45,28 @@ def _build_prompt(question: str, retrieved: list[dict[str, Any]]) -> str:
     context_block = "\n\n".join(sources_text) if sources_text else "(no sources found)"
 
     return (
-        "You are AgriVision, an agritech assistant.\n"
+        "You are AgriVision, an expert agritech assistant focused on crop disease management.\n"
         "Answer the user's question using ONLY the provided sources.\n"
         "If the sources are insufficient, say you don't have enough information yet and suggest what document to add.\n"
         "Keep the answer concise, practical, and safety-aware.\n\n"
+        "CRITICAL: Every answer MUST include a short 'Emergency Tips' section (2-4 bullet points) covering:\n"
+        "- Immediate actions to prevent disease spread (e.g., isolate affected plants, stop overhead irrigation).\n"
+        "- Safety precautions for farmers applying treatments (e.g., PPE, re-entry intervals, buffer zones).\n"
+        "- Red flags that require escalation to an agricultural extension officer.\n"
+        "- Quick environmental fixes (e.g., improve drainage, adjust spacing for airflow).\n\n"
         f"USER QUESTION:\n{question}\n\n"
         f"SOURCES:\n{context_block}\n\n"
         "OUTPUT FORMAT:\n"
         "- Provide a short actionable answer.\n"
         "- Then provide 2-5 bullet points of steps.\n"
+        "- Then provide an 'Emergency Tips:' section with the 4 points listed above.\n"
         "- End with a short 'Sources:' line listing source indices used.\n"
     )
 
 
-def generate_rag_answer(question: str, retrieved: list[dict[str, Any]]) -> dict[str, Any]:
+def generate_rag_answer(
+    question: str, retrieved: list[dict[str, Any]]
+) -> dict[str, Any]:
     api_keys = _list_gemini_api_keys()
     if not api_keys:
         return {
@@ -93,7 +101,11 @@ def generate_rag_answer(question: str, retrieved: list[dict[str, Any]]) -> dict[
             error_text = str(exc)
             last_error = error_text
             # Common case in your `.env`: a suspended consumer key.
-            if "CONSUMER_SUSPENDED" in error_text or "Consumer" in error_text and "suspended" in error_text:
+            if (
+                "CONSUMER_SUSPENDED" in error_text
+                or "Consumer" in error_text
+                and "suspended" in error_text
+            ):
                 continue
             # Quota or permission errors should try next keys too.
             if "PERMISSION_DENIED" in error_text or "RESOURCE_EXHAUSTED" in error_text:
@@ -105,4 +117,3 @@ def generate_rag_answer(question: str, retrieved: list[dict[str, Any]]) -> dict[
         "model": model,
         "error": last_error or "Gemini call failed.",
     }
-

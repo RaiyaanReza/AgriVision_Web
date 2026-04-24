@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Custom Theme Extensions */
 @theme {
   --color-agri-primary: #0f766e;
   --color-agri-secondary: #065f46;
   --color-agri-accent: #34d399;
   --color-agri-bg: #f0f7f5;
-  
+  --color-agri-bg-dark: #0f172a;
+
   --font-sans: 'Inter', system-ui, sans-serif;
-  
+
   --animate-fade-in: fadeIn 0.3s ease-out;
   --animate-slide-up: slideUp 0.4s ease-out;
-  
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -25,7 +28,7 @@
 /* Global Styles */
 @layer base {
   body {
-    @apply bg-agri-bg text-slate-800 antialiased;
+    @apply bg-agri-bg text-slate-800 antialiased dark:bg-agri-bg-dark dark:text-slate-100;
   }
 
   h1 {
@@ -43,12 +46,19 @@
   ::selection {
     background: color-mix(in oklab, var(--color-agri-primary) 25%, white);
   }
+
+  .dark ::selection {
+    background: color-mix(in oklab, var(--color-agri-primary) 40%, black);
+  }
 }
 
 /* Utility Extensions */
 @layer utilities {
   .glass {
     @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+  .dark .glass {
+    @apply bg-slate-800/70 border-slate-700/30;
   }
   .scan-line {
     @apply absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-agri-primary to-transparent animate-pulse;

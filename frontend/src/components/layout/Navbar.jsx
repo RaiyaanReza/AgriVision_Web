@@ -14,7 +14,10 @@ export default function Navbar() {
   const { theme, toggleTheme } = useAppStore();
 
   return (
-    <Disclosure as="nav" className="bg-white shadow">
+    <Disclosure
+      as="nav"
+      className="bg-white/90 backdrop-blur-md border-b border-emerald-100 dark:bg-slate-900/90 dark:border-slate-800 shadow-sm"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -22,7 +25,7 @@ export default function Navbar() {
               <div className="flex">
                 <div className="flex shrink-0 items-center">
                   <Leaf className="h-8 w-8 text-agri-primary" />
-                  <span className="ml-2 text-xl font-bold text-slate-900">
+                  <span className="ml-2 text-xl font-bold text-slate-900 dark:text-slate-50">
                     AgriVision
                   </span>
                 </div>
@@ -32,10 +35,10 @@ export default function Navbar() {
                       key={item.name}
                       to={item.href}
                       className={({ isActive }) =>
-                        `inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                        `inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium transition-colors ${
                           isActive
-                            ? "border-agri-primary text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                            ? "border-agri-primary text-gray-900 dark:text-slate-100"
+                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:border-slate-600"
                         }`
                       }
                     >
@@ -47,9 +50,9 @@ export default function Navbar() {
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
                 <button
                   onClick={toggleTheme}
-                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-agri-primary focus:ring-offset-2"
+                  className="rounded-full bg-slate-100 p-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-agri-primary focus:ring-offset-2 dark:bg-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+                  aria-label="Toggle theme"
                 >
-                  <span className="sr-only">Toggle theme</span>
                   {theme === "light" ? (
                     <Moon className="h-5 w-5" />
                   ) : (
@@ -58,7 +61,7 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-agri-primary">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-agri-primary dark:hover:bg-slate-800 dark:text-slate-400">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <X className="block h-6 w-6" aria-hidden="true" />
@@ -78,16 +81,31 @@ export default function Navbar() {
                   as={NavLink}
                   to={item.href}
                   className={({ isActive }) =>
-                    `block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+                    `block border-l-4 py-2 pl-3 pr-4 text-base font-medium transition-colors ${
                       isActive
-                        ? "border-agri-primary bg-agri-primary/10 text-agri-primary"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                        ? "border-agri-primary bg-agri-primary/10 text-agri-primary dark:bg-agri-primary/20"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
                     }`
                   }
                 >
                   {item.name}
                 </Disclosure.Button>
               ))}
+              <div className="px-3 py-2">
+                <button
+                  onClick={() => {
+                    toggleTheme();
+                  }}
+                  className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition-colors"
+                >
+                  {theme === "light" ? (
+                    <Moon className="h-4 w-4" />
+                  ) : (
+                    <Sun className="h-4 w-4" />
+                  )}
+                  {theme === "light" ? "Dark Mode" : "Light Mode"}
+                </button>
+              </div>
             </div>
           </Disclosure.Panel>
         </>

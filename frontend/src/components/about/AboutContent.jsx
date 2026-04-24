@@ -22,12 +22,12 @@ export function AboutContent() {
       {aboutPoints.map((point) => (
         <article
           key={point.title}
-          className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm"
+          className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm dark:bg-slate-800/60 dark:border-slate-700 transition-colors"
         >
-          <h2 className="text-lg font-semibold text-slate-900">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
             {point.title}
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
             {point.description}
           </p>
         </article>

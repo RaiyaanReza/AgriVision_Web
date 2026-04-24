@@ -39,23 +39,23 @@ export const DocumentUploadForm = ({ onSuccess }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
           Title
         </label>
         <input
           type="text"
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring dark:bg-slate-900/60 dark:border-slate-600 dark:text-slate-100 transition-colors"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
           Crop Type
         </label>
         <select
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring dark:bg-slate-900/60 dark:border-slate-600 dark:text-slate-100 transition-colors"
           value={cropType}
           onChange={(e) => setCropType(e.target.value)}
           required
@@ -73,22 +73,22 @@ export const DocumentUploadForm = ({ onSuccess }) => {
         </select>
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
           Disease Name (Optional)
         </label>
         <input
           type="text"
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring dark:bg-slate-900/60 dark:border-slate-600 dark:text-slate-100 transition-colors"
           value={diseaseName}
           onChange={(e) => setDiseaseName(e.target.value)}
         />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
           Treatment Content (Recommended)
         </label>
         <textarea
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring dark:bg-slate-900/60 dark:border-slate-600 dark:text-slate-100 transition-colors"
           rows={4}
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -96,24 +96,24 @@ export const DocumentUploadForm = ({ onSuccess }) => {
         />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
           Tags (comma-separated, optional)
         </label>
         <input
           type="text"
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-agri-primary/30 focus:ring dark:bg-slate-900/60 dark:border-slate-600 dark:text-slate-100 transition-colors"
           value={tags}
           onChange={(e) => setTags(e.target.value)}
           placeholder="fungicide, organic, preventive"
         />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
           File (PDF/JSON/TXT)
         </label>
         <input
           type="file"
-          className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm"
+          className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm dark:bg-slate-900/60 dark:border-slate-600 dark:text-slate-100 transition-colors"
           onChange={(e) => setFile(e.target.files[0])}
           accept=".pdf,.json,.txt"
           required

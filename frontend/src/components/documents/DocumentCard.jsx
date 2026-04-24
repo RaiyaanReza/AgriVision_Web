@@ -7,26 +7,29 @@ export const DocumentCard = ({ doc }) => {
   const { mutate: delDoc, isPending } = useDeleteDocument();
 
   return (
-    <Card className="p-4 flex flex-col justify-between h-full bg-white hover:shadow-2xl transition">
+    <Card className="p-4 flex flex-col justify-between h-full bg-white hover:shadow-2xl transition dark:bg-slate-800/60">
       <div>
-        <h3 className="font-bold text-lg mb-2 truncate" title={doc.title}>
+        <h3
+          className="font-bold text-lg mb-2 truncate dark:text-slate-100"
+          title={doc.title}
+        >
           {doc.title}
         </h3>
         <div className="flex gap-2 mb-2 flex-wrap">
-          <span className="rounded-full border border-slate-300 px-2.5 py-0.5 text-xs text-slate-600">
+          <span className="rounded-full border border-slate-300 px-2.5 py-0.5 text-xs text-slate-600 dark:border-slate-600 dark:text-slate-400">
             {doc.crop_type}
           </span>
           {doc.disease_name && (
-            <span className="rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700">
+            <span className="rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700 dark:bg-amber-900/30 dark:border-amber-700 dark:text-amber-300">
               {doc.disease_name}
             </span>
           )}
         </div>
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-gray-400 dark:text-slate-500">
           Added: {formatDate(doc.created_at)}
         </p>
       </div>
-      <div className="mt-4 pt-4 border-t flex justify-end">
+      <div className="mt-4 pt-4 border-t flex justify-end dark:border-slate-700">
         <Button
           variant="ghost"
           size="sm"

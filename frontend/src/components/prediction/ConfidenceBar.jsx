@@ -4,7 +4,7 @@ export const ConfidenceBar = ({
 }) => {
   return (
     <div className="w-full">
-      <div className="h-2 w-full rounded-full bg-slate-200">
+      <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-700 transition-colors">
         <div
           className={`h-2 rounded-full ${colorClass}`}
           style={{
