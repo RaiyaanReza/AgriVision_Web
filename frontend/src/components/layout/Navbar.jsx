@@ -8,7 +8,12 @@ import { LanguageSwitcher } from '../common';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+    return false;
+  });
   const location = useLocation();
   const { t } = useTranslation();
 
@@ -22,9 +27,9 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   }, [isDarkMode]);
 
@@ -44,9 +49,7 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
-            : 'bg-transparent'
+          isScrolled ? 'glass shadow-lg' : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,12 +57,13 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <motion.div
-                whileHover={{ rotate: 180 }}
-                transition={{ duration: 0.6 }}
+                whileHover={{ rotate: 180, scale: 1.1 }}
+                transition={{ duration: 0.6, type: 'spring' }}
+                className="relative"
               >
-                <Sprout className="w-8 h-8 text-green-600" />
+                <Sprout className="w-8 h-8 text-primary-600 dark:text-primary-400" />
               </motion.div>
-              <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="text-xl font-bold font-heading bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 bg-clip-text text-transparent">
                 AgriVision
               </span>
             </Link>
@@ -70,20 +74,25 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative text-sm font-medium transition-colors ${
+                  className={`relative text-sm font-medium transition-all duration-300 ${
                     location.pathname === link.path
-                      ? 'text-green-600 dark:text-green-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400'
+                      ? 'text-primary-600 dark:text-primary-400'
+                      : 'text-text-secondary hover:text-primary-600 dark:hover:text-primary-400'
                   }`}
                 >
                   {link.label}
                   {location.pathname === link.path && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 dark:bg-green-400"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 rounded-full"
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                   )}
+                  <motion.div
+                    className="absolute inset-0 bg-primary-100 dark:bg-primary-900/20 rounded-lg opacity-0"
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
                 </Link>
               ))}
             </div>
@@ -96,29 +105,29 @@ const Navbar = () => {
               <motion.button
                 whileTap={{ scale: 0.9, rotate: 180 }}
                 onClick={toggleDarkMode}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="p-2 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all duration-300"
                 aria-label="Toggle dark mode"
               >
                 <AnimatePresence mode="wait">
                   {isDarkMode ? (
                     <motion.div
                       key="sun"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
+                      initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Sun className="w-5 h-5 text-yellow-500" />
+                      <Sun className="w-5 h-5 text-accent-500" />
                     </motion.div>
                   ) : (
                     <motion.div
                       key="moon"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
+                      initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Moon className="w-5 h-5 text-gray-700" />
+                      <Moon className="w-5 h-5 text-primary-700 dark:text-primary-300" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -127,13 +136,13 @@ const Navbar = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="md:hidden p-2 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  <X className="w-6 h-6 text-text-primary" />
                 ) : (
-                  <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  <Menu className="w-6 h-6 text-text-primary" />
                 )}
               </button>
             </div>
@@ -148,23 +157,29 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden fixed top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 z-40 overflow-hidden"
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="md:hidden fixed top-16 left-0 right-0 glass border-b border-primary-200 dark:border-primary-800 z-40 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-2">
-              {navLinks.map((link) => (
-                <Link
+              {navLinks.map((link, index) => (
+                <motion.div
                   key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    location.pathname === link.path
-                      ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
+                      location.pathname === link.path
+                        ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
+                        : 'text-text-secondary hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>
