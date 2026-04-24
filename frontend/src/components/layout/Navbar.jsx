@@ -1,115 +1,187 @@
-import { NavLink } from "react-router-dom";
-import { Menu, X, Leaf, Moon, Sun } from "lucide-react";
-import { Disclosure } from "@headlessui/react";
-import { useAppStore } from "../../store/useAppStore";
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Sun, Moon, Sprout } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../common';
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Treatments", href: "/treatments" },
-  { name: "History", href: "/history" },
-  { name: "About", href: "/about" },
-];
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const location = useLocation();
+  const { t } = useTranslation();
 
-export default function Navbar() {
-  const { theme, toggleTheme } = useAppStore();
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const navLinks = [
+    { path: '/', label: t('nav.home', 'Home') },
+    { path: '/predict', label: t('nav.prediction', 'Detection') },
+    { path: '/history', label: t('nav.history', 'History') },
+    { path: '/chat', label: 'AgriBot' },
+    { path: '/about', label: t('nav.about', 'About') },
+  ];
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <Disclosure
-      as="nav"
-      className="bg-white/90 backdrop-blur-md border-b border-emerald-100 dark:bg-slate-900/90 dark:border-slate-800 shadow-sm"
-    >
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 justify-between">
-              <div className="flex">
-                <div className="flex shrink-0 items-center">
-                  <Leaf className="h-8 w-8 text-agri-primary" />
-                  <span className="ml-2 text-xl font-bold text-slate-900 dark:text-slate-50">
-                    AgriVision
-                  </span>
-                </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.map((item) => (
-                    <NavLink
-                      key={item.name}
-                      to={item.href}
-                      className={({ isActive }) =>
-                        `inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium transition-colors ${
-                          isActive
-                            ? "border-agri-primary text-gray-900 dark:text-slate-100"
-                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:border-slate-600"
-                        }`
-                      }
-                    >
-                      {item.name}
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-              <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                <button
-                  onClick={toggleTheme}
-                  className="rounded-full bg-slate-100 p-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-agri-primary focus:ring-offset-2 dark:bg-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
-                  aria-label="Toggle theme"
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 group">
+              <motion.div
+                whileHover={{ rotate: 180 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Sprout className="w-8 h-8 text-green-600" />
+              </motion.div>
+              <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                AgriVision
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`relative text-sm font-medium transition-colors ${
+                    location.pathname === link.path
+                      ? 'text-green-600 dark:text-green-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400'
+                  }`}
                 >
-                  {theme === "light" ? (
-                    <Moon className="h-5 w-5" />
-                  ) : (
-                    <Sun className="h-5 w-5" />
+                  {link.label}
+                  {location.pathname === link.path && (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-green-600 dark:bg-green-400"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
                   )}
-                </button>
-              </div>
-              <div className="-mr-2 flex items-center sm:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-agri-primary dark:hover:bg-slate-800 dark:text-slate-400">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <X className="block h-6 w-6" aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+
+            {/* Right Side Actions */}
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher />
+              
+              {/* Dark Mode Toggle */}
+              <motion.button
+                whileTap={{ scale: 0.9, rotate: 180 }}
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                <AnimatePresence mode="wait">
+                  {isDarkMode ? (
+                    <motion.div
+                      key="sun"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Sun className="w-5 h-5 text-yellow-500" />
+                    </motion.div>
                   ) : (
-                    <Menu className="block h-6 w-6" aria-hidden="true" />
+                    <motion.div
+                      key="moon"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Moon className="w-5 h-5 text-gray-700" />
+                    </motion.div>
                   )}
-                </Disclosure.Button>
-              </div>
+                </AnimatePresence>
+              </motion.button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                ) : (
+                  <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                )}
+              </button>
             </div>
           </div>
+        </div>
+      </motion.nav>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 pb-3 pt-2">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as={NavLink}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    `block border-l-4 py-2 pl-3 pr-4 text-base font-medium transition-colors ${
-                      isActive
-                        ? "border-agri-primary bg-agri-primary/10 text-agri-primary dark:bg-agri-primary/20"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                    }`
-                  }
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 z-40 overflow-hidden"
+          >
+            <div className="px-4 py-4 space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                    location.pathname === link.path
+                      ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
                 >
-                  {item.name}
-                </Disclosure.Button>
+                  {link.label}
+                </Link>
               ))}
-              <div className="px-3 py-2">
-                <button
-                  onClick={() => {
-                    toggleTheme();
-                  }}
-                  className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition-colors"
-                >
-                  {theme === "light" ? (
-                    <Moon className="h-4 w-4" />
-                  ) : (
-                    <Sun className="h-4 w-4" />
-                  )}
-                  {theme === "light" ? "Dark Mode" : "Light Mode"}
-                </button>
-              </div>
             </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
-}
+};
+
+export default Navbar;

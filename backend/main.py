@@ -22,6 +22,7 @@ from services.database import (
     update_user_preferences,
     get_stats
 )
+from routes import chat
 
 # Setup logging
 logging.basicConfig(
@@ -47,6 +48,9 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 
 # Mount static files for images
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
+# Register Routers
+app.include_router(chat.router, prefix="/api/chat", tags=["AgriBot Chat"])
 
 @app.on_event("startup")
 async def startup_event() -> None:

@@ -6,6 +6,7 @@ import { LoadingSpinner } from "./components/ui/LoadingSpinner";
 const Home = lazy(() => import("./pages/Home"));
 const Prediction = lazy(() => import("./pages/Prediction"));
 const History = lazy(() => import("./pages/History"));
+const AgriBot = lazy(() => import("./pages/AgriBot"));
 const About = lazy(() => import("./pages/About"));
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Navigate to="/predict" replace />} />
           <Route path="predict" element={<Prediction />} />
           <Route path="history" element={<History />} />
+          <Route path="chat" element={<AgriBot />} />
           <Route path="about" element={<About />} />
           <Route path="old-home" element={<Home />} />
         </Route>

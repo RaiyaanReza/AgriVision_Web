@@ -1,0 +1,135 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "prediction": "Predicción",
+    "history": "Historial",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Detección de Enfermedades de Cultivos con IA",
+    "subtitle": "Protege tus cultivos con tecnología avanzada de IA. Sube una imagen y obtén diagnóstico instantáneo de enfermedades y recomendaciones de tratamiento.",
+    "cta_primary": "Iniciar Detección",
+    "cta_secondary": "Más Información",
+    "stats": {
+      "accuracy": "Precisión",
+      "users": "Usuarios Activos",
+      "predictions": "Predicciones Realizadas"
+    }
+  },
+  "features": {
+    "title": "¿Por Qué Elegir AgriVision?",
+    "subtitle": "La tecnología avanzada de IA se encuentra con la experiencia agrícola",
+    "items": {
+      "ai_detection": {
+        "title": "Detección con IA",
+        "description": "Modelos de aprendizaje profundo de última generación para identificación precisa de enfermedades"
+      },
+      "instant_treatment": {
+        "title": "Tratamiento Instantáneo",
+        "description": "Obtén recomendaciones de tratamiento accionables impulsadas por Gemini AI"
+      },
+      "history_tracking": {
+        "title": "Seguimiento del Historial",
+        "description": "Rastrea todas tus predicciones y tratamientos en un solo lugar"
+      },
+      "offline_mode": {
+        "title": "Modo Sin Conexión",
+        "description": "Accede a tus datos incluso sin conexión a internet"
+      },
+      "multi_language": {
+        "title": "Multi-idioma",
+        "description": "Disponible en múltiples idiomas para accesibilidad global"
+      },
+      "expert_support": {
+        "title": "Soporte Experto",
+        "description": "Conéctate con expertos agrícolas para casos complejos"
+      }
+    }
+  },
+  "how_it_works": {
+    "title": "Cómo Funciona",
+    "subtitle": "Cuatro pasos simples para proteger tus cultivos",
+    "steps": {
+      "upload": {
+        "title": "Subir Imagen",
+        "description": "Toma o sube una foto de tu cultivo afectado"
+      },
+      "analyze": {
+        "title": "Análisis con IA",
+        "description": "Nuestra IA analiza la imagen en busca de patrones de enfermedad"
+      },
+      "diagnose": {
+        "title": "Obtener Diagnóstico",
+        "description": "Recibe identificación precisa de enfermedades al instante"
+      },
+      "treat": {
+        "title": "Plan de Tratamiento",
+        "description": "Obtén recomendaciones detalladas de tratamiento de la IA"
+      }
+    },
+    "cta": "Pruébalo Ahora"
+  },
+  "prediction": {
+    "title": "Detección de Enfermedades de Cultivos",
+    "subtitle": "Sube una imagen para detectar enfermedades de cultivos",
+    "upload_zone": {
+      "title": "Arrastra y Suelta o Haz Clic para Subir",
+      "subtitle": "Soporta formatos JPG, PNG, WebP",
+      "analyzing": "Analizando imagen...",
+      "processing": "Procesando..."
+    },
+    "results": {
+      "disease_detected": "Enfermedad Detectada",
+      "confidence": "Confianza",
+      "treatment": "Recomendación de Tratamiento",
+      "no_disease": "No Se Detectó Enfermedad",
+      "healthy_crop": "¡Tu cultivo parece saludable!"
+    },
+    "actions": {
+      "upload_new": "Subir Nueva Imagen",
+      "save_results": "Guardar Resultados",
+      "share": "Compartir Resultados"
+    }
+  },
+  "history": {
+    "title": "Historial de Predicciones",
+    "subtitle": "Ver todas tus predicciones y tratamientos anteriores",
+    "stats": {
+      "total_predictions": "Total de Predicciones",
+      "diseases_found": "Enfermedades Encontradas",
+      "healthy_crops": "Cultivos Saludables",
+      "accuracy_rate": "Tasa de Precisión"
+    },
+    "filters": {
+      "all": "Todos",
+      "diseased": "Enfermos",
+      "healthy": "Saludables",
+      "this_week": "Esta Semana",
+      "this_month": "Este Mes"
+    },
+    "empty": "¡Aún no hay predicciones. ¡Comienza subiendo una imagen!",
+    "load_more": "Cargar Más"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "date": "Fecha",
+    "status": "Estado"
+  },
+  "footer": {
+    "description": "Empoderando a los agricultores con detección de enfermedades de cultivos impulsada por IA y recomendaciones de tratamiento.",
+    "quick_links": "Enlaces Rápidos",
+    "resources": "Recursos",
+    "contact": "Contáctanos",
+    "copyright": "© 2024 AgriVision. Todos los derechos reservados."
+  }
+}

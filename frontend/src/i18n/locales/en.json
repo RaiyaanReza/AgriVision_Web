@@ -1,0 +1,135 @@
+{
+  "nav": {
+    "home": "Home",
+    "prediction": "Prediction",
+    "history": "History",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "AI-Powered Crop Disease Detection",
+    "subtitle": "Protect your crops with advanced AI technology. Upload an image and get instant disease diagnosis and treatment recommendations.",
+    "cta_primary": "Start Detection",
+    "cta_secondary": "Learn More",
+    "stats": {
+      "accuracy": "Accuracy",
+      "users": "Active Users",
+      "predictions": "Predictions Made"
+    }
+  },
+  "features": {
+    "title": "Why Choose AgriVision?",
+    "subtitle": "Advanced AI technology meets agricultural expertise",
+    "items": {
+      "ai_detection": {
+        "title": "AI Detection",
+        "description": "State-of-the-art deep learning models for accurate disease identification"
+      },
+      "instant_treatment": {
+        "title": "Instant Treatment",
+        "description": "Get actionable treatment recommendations powered by Gemini AI"
+      },
+      "history_tracking": {
+        "title": "History Tracking",
+        "description": "Track all your predictions and treatments in one place"
+      },
+      "offline_mode": {
+        "title": "Offline Mode",
+        "description": "Access your data even without internet connection"
+      },
+      "multi_language": {
+        "title": "Multi-Language",
+        "description": "Available in multiple languages for global accessibility"
+      },
+      "expert_support": {
+        "title": "Expert Support",
+        "description": "Connect with agricultural experts for complex cases"
+      }
+    }
+  },
+  "how_it_works": {
+    "title": "How It Works",
+    "subtitle": "Four simple steps to protect your crops",
+    "steps": {
+      "upload": {
+        "title": "Upload Image",
+        "description": "Take or upload a photo of your affected crop"
+      },
+      "analyze": {
+        "title": "AI Analysis",
+        "description": "Our AI analyzes the image for disease patterns"
+      },
+      "diagnose": {
+        "title": "Get Diagnosis",
+        "description": "Receive accurate disease identification instantly"
+      },
+      "treat": {
+        "title": "Treatment Plan",
+        "description": "Get detailed treatment recommendations from AI"
+      }
+    },
+    "cta": "Try It Now"
+  },
+  "prediction": {
+    "title": "Crop Disease Detection",
+    "subtitle": "Upload an image to detect crop diseases",
+    "upload_zone": {
+      "title": "Drag & Drop or Click to Upload",
+      "subtitle": "Supports JPG, PNG, WebP formats",
+      "analyzing": "Analyzing image...",
+      "processing": "Processing..."
+    },
+    "results": {
+      "disease_detected": "Disease Detected",
+      "confidence": "Confidence",
+      "treatment": "Treatment Recommendation",
+      "no_disease": "No Disease Detected",
+      "healthy_crop": "Your crop appears healthy!"
+    },
+    "actions": {
+      "upload_new": "Upload New Image",
+      "save_results": "Save Results",
+      "share": "Share Results"
+    }
+  },
+  "history": {
+    "title": "Prediction History",
+    "subtitle": "View all your past predictions and treatments",
+    "stats": {
+      "total_predictions": "Total Predictions",
+      "diseases_found": "Diseases Found",
+      "healthy_crops": "Healthy Crops",
+      "accuracy_rate": "Accuracy Rate"
+    },
+    "filters": {
+      "all": "All",
+      "diseased": "Diseased",
+      "healthy": "Healthy",
+      "this_week": "This Week",
+      "this_month": "This Month"
+    },
+    "empty": "No predictions yet. Start by uploading an image!",
+    "load_more": "Load More"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "date": "Date",
+    "status": "Status"
+  },
+  "footer": {
+    "description": "Empowering farmers with AI-driven crop disease detection and treatment recommendations.",
+    "quick_links": "Quick Links",
+    "resources": "Resources",
+    "contact": "Contact Us",
+    "copyright": "© 2024 AgriVision. All rights reserved."
+  }
+}
