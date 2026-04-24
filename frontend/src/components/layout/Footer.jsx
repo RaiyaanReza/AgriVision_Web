@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sprout, Mail, Phone, MapPin, Github, Twitter, Linkedin } from 'lucide-react';
+import { Sprout, Mail, Phone, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
@@ -27,11 +27,7 @@ const Footer = () => {
     ],
   };
 
-  const socialLinks = [
-    { icon: Github, url: 'https://github.com', label: 'GitHub' },
-    { icon: Twitter, url: 'https://twitter.com', label: 'Twitter' },
-    { icon: Linkedin, url: 'https://linkedin.com', label: 'LinkedIn' },
-  ];
+  // const socialLinks = [];
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -47,21 +43,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-md">
               {t('footer.description', 'Empowering farmers with AI-driven crop diagnosis and real-time agricultural support.')}
             </p>
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.url}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-gray-800 hover:bg-green-600 flex items-center justify-center transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
+            {/* Social Links Removed for compatibility */}
           </div>
 
           {/* Quick Links */}

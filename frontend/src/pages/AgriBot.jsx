@@ -6,8 +6,8 @@ Real-time chat with image upload and streaming responses
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Image, X, Bot, User, Loader2, Sparkles } from 'lucide-react';
-import Button from '../common/Button';
-import Card from '../common/Card';
+import Button from '../components/common/Button';
+import Card from '../components/common/Card';
 
 const AgriBotChat = () => {
   const [messages, setMessages] = useState([]);
@@ -152,132 +152,180 @@ const AgriBotChat = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-4rem)] max-w-5xl mx-auto p-4">
-      {/* Header */}
+    <div className="flex flex-col h-[calc(100vh-6rem)] max-w-6xl mx-auto p-4 md:p-6">
+      {/* Header - Glassmorphism */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-t-2xl p-6 shadow-lg"
+        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 rounded-t-3xl p-5 md:p-6 shadow-xl relative overflow-hidden"
       >
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-white/20 rounded-full">
-            <Bot className="w-8 h-8" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500"></div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-2xl shadow-inner">
+              <Bot className="w-8 h-8 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-600 dark:from-green-400 dark:to-emerald-300">
+                AgriBot
+              </h1>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Expert Agricultural Intelligence</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl font-bold">AgriBot</h1>
-            <p className="text-green-100 text-sm">Your AI Agricultural Assistant</p>
-          </div>
-          <div className="ml-auto flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-yellow-300" />
-            <span className="text-xs bg-white/20 px-2 py-1 rounded-full">Powered by Gemini AI</span>
+          <div className="hidden md:flex items-center gap-3 bg-green-50 dark:bg-green-900/20 px-4 py-2 rounded-full border border-green-100 dark:border-green-800">
+            <Sparkles className="w-4 h-4 text-green-600" />
+            <span className="text-xs font-semibold text-green-700 dark:text-green-300">Gemini 2.0 Pro Powered</span>
           </div>
         </div>
       </motion.div>
 
-      {/* Messages Container */}
-      <Card className="flex-1 overflow-y-auto rounded-t-none border-t-0 space-y-4 p-6 bg-gray-50 dark:bg-gray-900">
-        <AnimatePresence>
-          {messages.length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400"
-            >
-              <Bot className="w-16 h-16 mb-4 opacity-50" />
-              <h3 className="text-xl font-semibold mb-2">Welcome to AgriBot!</h3>
-              <p className="text-center max-w-md">
-                Ask me anything about crop diseases, treatments, or farming tips. 
-                You can also upload images for instant diagnosis!
-              </p>
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-lg">
-                {[
-                  "How do I treat tomato blight?",
-                  "What causes yellow leaves in plants?",
-                  "Organic pest control methods",
-                  "Best fertilizer for wheat crops"
-                ].map((suggestion, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setInputMessage(suggestion)}
-                    className="p-3 text-sm bg-white dark:bg-gray-800 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700 transition-colors text-left border border-gray-200 dark:border-gray-700"
-                  >
-                    {suggestion}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          ) : (
-            messages.map((message) => (
+      {/* Messages Container - Refined Scroll & Visuals */}
+      <div className="flex-1 overflow-hidden relative border-x border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-900/30 backdrop-blur-sm">
+        <div className="h-full overflow-y-auto px-6 py-8 space-y-6 scroll-smooth scrollbar-hide" id="chat-messages">
+          <AnimatePresence mode="popLayout">
+            {messages.length === 0 ? (
               <motion.div
-                key={message.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex gap-3 ${message.type === 'user' ? 'flex-row-reverse' : ''}`}
+                key="welcome"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="flex flex-col items-center justify-center min-h-[400px] text-center"
               >
-                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                  message.type === 'user' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-green-600 text-white'
-                }`}>
-                  {message.type === 'user' ? <User className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
+                <div className="w-24 h-24 bg-gradient-to-br from-green-100 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full flex items-center justify-center mb-6 shadow-2xl shadow-green-200/50 dark:shadow-none border border-green-200/30 dark:border-green-800/30">
+                   <Bot className="w-12 h-12 text-green-600 dark:text-green-400" />
                 </div>
-                <div className={`max-w-[70%] ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
-                  {message.image && (
-                    <img 
-                      src={message.image} 
-                      alt="Uploaded" 
-                      className="rounded-lg mb-2 max-h-48 object-cover"
-                    />
-                  )}
-                  <div className={`inline-block p-4 rounded-2xl ${
-                    message.type === 'user'
-                      ? 'bg-blue-600 text-white rounded-tr-sm'
-                      : message.error
-                      ? 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200 rounded-tl-sm'
-                      : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-tl-sm shadow-md'
-                  }`}>
-                    <p className="whitespace-pre-wrap">{message.content}</p>
-                    {message.isStreaming && (
-                      <Loader2 className="w-4 h-4 animate-spin inline ml-2" />
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1 px-2">
-                    {new Date(message.timestamp).toLocaleTimeString()}
-                  </p>
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">Your Field Assistant Awaits</h3>
+                <p className="text-gray-500 dark:text-gray-400 max-w-sm mb-8 leading-relaxed">
+                  Identify crop diseases instantly, get expert treatment plans, and master your farming with AI.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl">
+                  {[
+                    { text: "My tomato leaves have brown spots", icon: "🍅" },
+                    { text: "Best organic pesticides for rice", icon: "🌾" },
+                    { text: "When to apply nitrogen fertilizer?", icon: "🧪" },
+                    { text: "Identify wheat rust symptoms", icon: "🍂" }
+                  ].map((suggestion, idx) => (
+                    <motion.button
+                      key={idx}
+                      whileHover={{ scale: 1.02, backgroundColor: 'rgba(16, 185, 129, 0.05)' }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setInputMessage(suggestion.text)}
+                      className="p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-sm text-left group transition-all"
+                    >
+                      <span className="mr-2">{suggestion.icon}</span>
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">
+                        {suggestion.text}
+                      </span>
+                    </motion.button>
+                  ))}
                 </div>
               </motion.div>
-            ))
+            ) : (
+              messages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  layout
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  className={`flex gap-4 ${message.type === 'user' ? 'flex-row-reverse' : ''}`}
+                >
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg transform transition-transform hover:scale-105 ${
+                    message.type === 'user' 
+                      ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white' 
+                      : 'bg-gradient-to-br from-green-500 to-emerald-600 text-white'
+                  }`}>
+                    {message.type === 'user' ? <User className="w-6 h-6" /> : <Bot className="w-6 h-6" />}
+                  </div>
+                  <div className={`max-w-[85%] md:max-w-[75%] ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
+                    {message.image && (
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="mb-3 inline-block rounded-3xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl"
+                      >
+                        <img 
+                          src={message.image} 
+                          alt="Uploaded" 
+                          className="max-h-64 w-auto object-cover"
+                        />
+                      </motion.div>
+                    )}
+                    <div className={`inline-block p-5 rounded-3xl shadow-sm relative ${
+                      message.type === 'user'
+                        ? 'bg-blue-600 text-white rounded-tr-sm bg-gradient-to-br from-blue-600 to-indigo-600'
+                        : message.error
+                        ? 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border border-red-100 dark:border-red-900/30 rounded-tl-sm'
+                        : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-tl-sm shadow-md'
+                    }`}>
+                      <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap leading-relaxed font-medium">
+                        {message.content}
+                      </div>
+                      {message.isStreaming && (
+                        <div className="flex gap-1 mt-2">
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce"></span>
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce delay-100"></span>
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce delay-200"></span>
+                        </div>
+                      )}
+                    </div>
+                    <div className={`flex items-center gap-2 mt-2 px-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <span>{new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                      {message.type === 'bot' && !message.error && (
+                        <>
+                          <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                          <span className="text-green-500">Verified Diagnosis</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </AnimatePresence>
+          <div ref={messagesEndRef} className="h-4" />
+        </div>
+        
+        {/* Subtle Overlay Gradient */}
+        <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-gray-50/50 dark:from-gray-900/50 to-transparent pointer-events-none"></div>
+      </div>
+
+      {/* Input Area - Integrated Glassmorphism */}
+      <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-t-0 border-gray-200/50 dark:border-gray-700/50 rounded-b-3xl p-4 md:p-6 shadow-2xl relative">
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              className="absolute bottom-full left-6 mb-4 flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-green-100 dark:border-green-900/30"
+            >
+              <div className="relative group">
+                <img 
+                  src={selectedImage.preview} 
+                  alt="Preview" 
+                  className="w-20 h-20 object-cover rounded-xl border border-gray-200 dark:border-gray-700"
+                />
+                <button
+                  onClick={removeImage}
+                  className="absolute -top-2 -right-2 p-1.5 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600 transition-colors"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </div>
+              <div className="pr-4">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-tighter mb-1">Upload Ready</p>
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 truncate max-w-[150px]">
+                  {selectedImage.file.name}
+                </p>
+              </div>
+            </motion.div>
           )}
         </AnimatePresence>
-        <div ref={messagesEndRef} />
-      </Card>
-
-      {/* Input Area */}
-      <Card className="rounded-b-none border-b-0 p-4 bg-white dark:bg-gray-800">
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="mb-3 flex items-center gap-3 p-2 bg-gray-100 dark:bg-gray-700 rounded-lg"
-          >
-            <img 
-              src={selectedImage.preview} 
-              alt="Preview" 
-              className="w-16 h-16 object-cover rounded"
-            />
-            <span className="text-sm text-gray-600 dark:text-gray-300 flex-1 truncate">
-              {selectedImage.file.name}
-            </span>
-            <button
-              onClick={removeImage}
-              className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5 text-red-600" />
-            </button>
-          </motion.div>
-        )}
         
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3 md:gap-4 bg-gray-100 dark:bg-gray-900/50 p-2 rounded-2xl border border-gray-200/30 dark:border-gray-700/30">
           <input
             type="file"
             ref={fileInputRef}
@@ -286,42 +334,51 @@ const AgriBotChat = () => {
             className="hidden"
           />
           
-          <Button
-            variant="outline"
-            size="icon"
+          <button
             onClick={() => fileInputRef.current?.click()}
             disabled={isLoading}
-            className="flex-shrink-0"
+            className="p-3 text-gray-500 hover:text-green-600 hover:bg-white dark:hover:bg-gray-800 rounded-xl transition-all disabled:opacity-50"
+            title="Upload Crop Image"
           >
-            <Image className="w-5 h-5" />
-          </Button>
+            <Image className="w-6 h-6" />
+          </button>
           
-          <input
-            type="text"
+          <textarea
+            rows="1"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Ask AgriBot anything..."
-            className="flex-1 px-4 py-3 bg-gray-100 dark:bg-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 dark:text-white"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+              }
+            }}
+            placeholder="Describe your plant problem..."
+            className="flex-1 py-3 px-2 bg-transparent border-none focus:ring-0 dark:text-white resize-none text-base placeholder:text-gray-400 dark:placeholder:text-gray-600 min-h-[44px] max-h-32"
             disabled={isLoading}
           />
           
-          <Button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={sendMessage}
             disabled={isLoading || (!inputMessage.trim() && !selectedImage)}
-            className="flex-shrink-0 px-6"
+            className="flex items-center justify-center w-12 h-12 md:w-auto md:px-6 bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-xl shadow-lg shadow-green-200 dark:shadow-none font-bold transition-all disabled:opacity-50 disabled:grayscale"
           >
             {isLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="w-6 h-6 animate-spin" />
             ) : (
               <>
-                <Send className="w-5 h-5 mr-2" />
-                Send
+                <span className="hidden md:inline mr-2">Send</span>
+                <Send className="w-5 h-5" />
               </>
             )}
-          </Button>
+          </motion.button>
         </div>
-      </Card>
+        <p className="mt-3 text-center text-[10px] text-gray-400 dark:text-gray-600 font-medium uppercase tracking-widest">
+          AI can make mistakes. Verify critical diagnosis with agricultural experts.
+        </p>
+      </div>
     </div>
   );
 };

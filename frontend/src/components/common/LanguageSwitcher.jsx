@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useLanguageStore } from '../store';
+import { useLanguageStore } from '../../store';
 import { Globe } from 'lucide-react';
 
 const LanguageSwitcher = () => {

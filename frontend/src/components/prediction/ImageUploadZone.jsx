@@ -1,10 +1,7 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { motion } from "framer-motion";
-import { LoaderCircle, Upload, X } from "lucide-react";
-import { Button } from "../ui/Button";
-
-const MotionDiv = motion.div;
+import { motion, AnimatePresence } from "framer-motion";
+import { Loader2, Upload, X, Camera, Image as ImageIcon } from "lucide-react";
 
 export const ImageUploadZone = ({
   onUpload,
@@ -28,64 +25,100 @@ export const ImageUploadZone = ({
     disabled: isLoading,
   });
 
-  if (previewUrl) {
-    return (
-      <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-lg border border-emerald-200/70 dark:border-slate-700 transition-colors">
-        <img
-          src={previewUrl}
-          alt="Preview"
-          className="w-full h-full object-cover"
-        />
-        {isLoading && (
-          <div className="absolute inset-0 bg-slate-900/35 backdrop-blur-[1px]">
-            <MotionDiv
-              initial={{ y: "-20%" }}
-              animate={{ y: "105%" }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
-              className="absolute left-0 right-0 h-16 bg-gradient-to-b from-transparent via-emerald-300/55 to-transparent"
-            />
-            <div className="absolute inset-x-0 bottom-4 flex items-center justify-center gap-2 text-sm font-medium text-white">
-              <LoaderCircle className="h-4 w-4 animate-spin" />
-              Processing image...
-            </div>
-          </div>
-        )}
-        <button
-          onClick={onClear}
-          disabled={isLoading}
-          className="absolute top-2 right-2 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
-        >
-          <X size={20} />
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <div
-      {...getRootProps()}
-      className={`w-full h-64 md:h-96 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-6 cursor-pointer transition-colors duration-200 ${
-        isDragActive
-          ? "border-agri-primary bg-agri-primary/10"
-          : "border-emerald-300/70 bg-gradient-to-br from-emerald-50 to-teal-50 hover:border-agri-primary/60 dark:border-slate-600 dark:from-slate-800/40 dark:to-slate-800/20 dark:hover:border-slate-500"
-      } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
-    >
-      <input {...getInputProps()} />
-      <Upload
-        size={44}
-        className="text-emerald-700 mb-4 dark:text-emerald-400"
-      />
-      <p className="text-lg text-slate-700 text-center mb-2 font-medium dark:text-slate-300">
-        {isDragActive
-          ? "Drop the image here..."
-          : "Drag & drop a crop image here"}
-      </p>
-      <p className="text-sm text-slate-500 mb-6 dark:text-slate-400">
-        or click to select files (JPEG, PNG, WEBP)
-      </p>
-      <Button type="button" variant="outline" disabled={isLoading}>
-        Select File
-      </Button>
+    <div className="relative w-full aspect-video md:aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-gray-50 dark:bg-gray-800/20 border-2 border-dashed border-gray-200 dark:border-gray-800 transition-all duration-500 group">
+      <AnimatePresence mode="wait">
+        {previewUrl ? (
+          <motion.div
+            key="preview"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="relative w-full h-full"
+          >
+            <img
+              src={previewUrl}
+              alt="Preview"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            
+            {isLoading && (
+              <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-[2px] flex flex-col items-center justify-center">
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-green-500/20 rounded-full blur-xl animate-pulse"></div>
+                  <Loader2 className="w-12 h-12 text-white animate-spin relative z-10" />
+                </div>
+                <motion.p 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-white font-black uppercase tracking-[0.3em] text-[10px] mt-6"
+                >
+                  Neural Analysis in Progress
+                </motion.p>
+                
+                {/* Scanning line animation */}
+                <motion.div
+                  initial={{ top: "0%" }}
+                  animate={{ top: "100%" }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-green-400 to-transparent shadow-[0_0_15px_rgba(74,222,128,0.5)] z-20"
+                />
+              </div>
+            )}
+
+            {!isLoading && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClear();
+                }}
+                className="absolute top-6 right-6 p-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl hover:bg-red-500 hover:border-red-500 transition-all duration-300"
+              >
+                <X size={18} />
+              </button>
+            )}
+          </motion.div>
+        ) : (
+          <motion.div
+            key="upload"
+            {...getRootProps()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`w-full h-full flex flex-col items-center justify-center p-12 cursor-pointer transition-all duration-500 ${
+              isDragActive ? "bg-green-50/50 dark:bg-green-500/5 border-green-500" : "hover:bg-white dark:hover:bg-gray-800/40"
+            }`}
+          >
+            <input {...getInputProps()} />
+            
+            <div className="relative mb-8">
+              <div className="absolute -inset-4 bg-green-500/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className={`w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500 ${
+                isDragActive ? "bg-green-500 text-white scale-110" : "bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500 shadow-xl"
+              }`}>
+                {isDragActive ? <Camera size={32} /> : <Upload size={32} />}
+              </div>
+            </div>
+
+            <h4 className="text-xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">
+              {isDragActive ? "Drop Specimen Now" : "Upload Crop Specimen"}
+            </h4>
+            <p className="text-gray-500 dark:text-gray-400 text-sm font-medium text-center max-w-xs leading-relaxed">
+              Drag and drop your image here, or <span className="text-green-600 font-bold">browse</span> from your secure local drive.
+            </p>
+
+            <div className="mt-10 flex items-center gap-6 opacity-30 group-hover:opacity-60 transition-opacity">
+              <div className="flex items-center gap-2">
+                <ImageIcon size={14} />
+                <span className="text-[10px] font-black uppercase tracking-widest">High Res</span>
+              </div>
+              <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+              <span className="text-[10px] font-black uppercase tracking-widest">PNG / JPG / WEBP</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
+
