@@ -3,6 +3,7 @@ import { Navbar, Footer } from './components/layout';
 import Home from './pages/Home';
 import Prediction from './pages/Prediction';
 import History from './pages/History';
+import AgriBot from './pages/AgriBot';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/prediction" element={<Prediction />} />
           <Route path="/history" element={<History />} />
+          <Route path="/chat" element={<AgriBot />} />
         </Routes>
       </main>
       <Footer />

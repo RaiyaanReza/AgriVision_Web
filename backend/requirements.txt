@@ -18,9 +18,13 @@ langchain>=0.1.0
 langchain-core>=0.1.21
 langgraph>=0.0.20
 langchain-community>=0.0.20
+langchain-google-genai>=2.0.0
 
 # Google Generative AI (Gemini)
 google-generativeai>=0.3.2
+
+# Vector Store
+chromadb>=0.6.0
 
 # Database
 sqlalchemy>=2.0.25

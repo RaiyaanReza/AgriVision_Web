@@ -32,6 +32,7 @@ const Navbar = () => {
     { path: '/', label: t('nav.home') },
     { path: '/prediction', label: t('nav.prediction') },
     { path: '/history', label: t('nav.history') },
+    { path: '/chat', label: 'AgriBot' },
   ];
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
