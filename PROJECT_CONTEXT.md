@@ -88,6 +88,17 @@ The frontend was already componentized, and was further modularized by extractin
   - frontend/src/components/home/ResultsStage.jsx
   - frontend/src/components/prediction/DiseaseSolutionPanel.jsx
 
+- Fine-grained prediction module split (copy/paste friendly UI blocks):
+  - frontend/src/components/prediction/DetectionSummaryMetrics.jsx
+  - frontend/src/components/prediction/DetectionPreviewPane.jsx
+  - frontend/src/components/prediction/SolutionLoadingState.jsx
+  - frontend/src/components/prediction/SolutionErrorState.jsx
+  - frontend/src/components/prediction/SolutionNarrativeCard.jsx
+  - frontend/src/components/prediction/SolutionMetaCard.jsx
+  - frontend/src/components/prediction/SolutionEvidenceCard.jsx
+  - frontend/src/components/prediction/DetectionResult.jsx now composes summary + preview blocks
+  - frontend/src/components/prediction/DiseaseSolutionPanel.jsx now composes narrative/meta/evidence/state blocks
+
 This reduces page complexity and makes feature sections easier to maintain/test independently.
 
 ## Test Script Update
@@ -135,6 +146,9 @@ Optional next modularization step:
   - /history loads modular history hero and history list section.
   - /about loads modular hero and about content card grid.
 - Home detect-to-solution pipeline remains active and unchanged in this pass.
+
+- Deeper modular verification:
+  - Prediction result panel renders via nested modular components (summary, preview, loading/error/narrative/meta/evidence).
 
 ## Known Notes
 
