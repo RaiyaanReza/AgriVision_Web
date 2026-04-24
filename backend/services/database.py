@@ -7,6 +7,7 @@ from sqlalchemy.future import select
 from sqlalchemy import func
 from typing import List, Optional, Dict, Any
 from datetime import datetime
+from contextlib import asynccontextmanager
 
 from config import settings
 from models.database import Base, PredictionHistory, TreatmentRecommendation, UserPreference
@@ -31,7 +32,16 @@ async def init_db():
         await conn.run_sync(Base.metadata.create_all)
 
 async def get_db_session():
-    """Dependency to get async database session"""
+    """Dependency to get async database session for FastAPI"""
+    async with async_session_maker() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
+
+@asynccontextmanager
+async def get_manual_session():
+    """Context manager for manual database session usage"""
     async with async_session_maker() as session:
         try:
             yield session

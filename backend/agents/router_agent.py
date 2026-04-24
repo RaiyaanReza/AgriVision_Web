@@ -8,9 +8,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 import base64
 import httpx
-from ..config import settings
-from ..services.database import get_db_session, save_prediction, save_treatment_recommendation
-from ..models.models import CropClassifier
+from config import settings
+from services.database import get_manual_session, save_prediction, save_treatment_recommendation
+from models.models import CropClassifier
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # Initialize LLM
@@ -95,7 +95,7 @@ async def save_to_database(state: AgentState) -> AgentState:
     try:
         # We need a fresh session or pass one in. For now, we create one here.
         # In a real API context, the session comes from the request.
-        async with get_db_session() as session:
+        async with get_manual_session() as session:
             # Save Prediction
             pred_record = await save_prediction(
                 session=session,

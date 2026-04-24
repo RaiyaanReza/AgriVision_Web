@@ -1,205 +1,209 @@
 import logging
 import os
-from typing import Any
+import shutil
+from pathlib import Path
+from typing import Any, List, Dict, Optional
+from datetime import datetime
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from .agents.workflow import run_workflow
-from .schemas.response import PredictResponse
-from .services.image_processor import ImageProcessor
-from .services.gemini_client import generate_rag_answer, is_gemini_configured
-from .services.knowledge_base import (
-    create_document,
-    delete_document,
-    extract_text_from_file,
-    initialize_knowledge_base,
-    list_documents,
-    query_documents,
+from config import settings
+from agents.router_agent import run_agrivision_agent
+from services.database import (
+    init_db, 
+    get_db_session, 
+    get_prediction_history, 
+    get_prediction_by_id, 
+    get_user_preferences, 
+    update_user_preferences,
+    get_stats
 )
 
+# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
 )
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Crop Disease Detection API", version="1.0.0")
+app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Ensure uploads directory exists
+UPLOAD_DIR = Path("uploads")
+UPLOAD_DIR.mkdir(exist_ok=True)
+
+# Mount static files for images
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 @app.on_event("startup")
 async def startup_event() -> None:
-    # Ensure `.env` values are present in process environment for local dev.
-    # This is safe: it only loads if python-dotenv is installed.
-    try:
-        from dotenv import load_dotenv  # type: ignore
-
-        load_dotenv(dotenv_path=os.path.join(os.getcwd(), ".env"), override=False)
-    except Exception:
-        pass
-    initialize_knowledge_base()
-
+    logger.info("Initializing database...")
+    await init_db()
+    logger.info("Database initialized.")
 
 @app.exception_handler(Exception)
 async def global_internal_error_handler(request: Request, exc: Exception) -> JSONResponse:
-    """Handle uncaught exceptions and return a standardized HTTP 500 response."""
     logger.error("Unhandled exception on path=%s: %s", request.url.path, exc, exc_info=True)
     return JSONResponse(
         status_code=500,
-        content={"detail": f"Internal server error: {exc}"},
+        content={"detail": f"Internal server error: {str(exc)}"},
     )
-
 
 @app.get("/api/health")
-async def health_check() -> dict:
-    """Return API health status."""
-    return {"status": "ok"}
+async def health_check(db: AsyncSession = Depends(get_db_session)) -> dict:
+    return {
+        "status": "ok", 
+        "version": settings.VERSION,
+        "database": "connected"
+    }
 
-
-@app.post("/api/predict", response_model=PredictResponse)
-async def predict(image: UploadFile = File(...)) -> PredictResponse:
-    """Run crop and disease detection workflow for an uploaded image."""
+@app.post("/api/predict")
+async def predict(file: UploadFile = File(...)) -> dict:
+    """
+    Upload an image and run the AgriVision agentic workflow.
+    """
     try:
-        prepared_image = await ImageProcessor.prepare_for_inference(image)
-    except ValueError as exc:
-        logger.warning("Invalid image upload rejected: %s", exc)
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
-    workflow_state = run_workflow(prepared_image)
-
-    success = bool(workflow_state.get("success", False))
-    error = workflow_state.get("error")
-    crop_result = workflow_state.get("crop_result")
-    disease_result = workflow_state.get("disease_result")
-
-    if isinstance(disease_result, dict):
-        disease_result_payload = [disease_result]
-    else:
-        disease_result_payload = disease_result
-
-    return PredictResponse(
-        success=success,
-        error=error,
-        crop_result=crop_result,
-        disease_result=disease_result_payload,
-    )
-
-
-class RAGQueryRequest(BaseModel):
-    question: str
-    cropType: str | None = None
-    crop_type: str | None = None
-    disease_name: str | None = None
-    llm: bool | None = None
-
-
-@app.get("/api/documents")
-async def get_documents() -> list[dict[str, Any]]:
-    return list_documents()
-
-
-@app.post("/api/documents")
-async def upload_document(
-    file: UploadFile = File(...),
-    title: str = Form(""),
-    crop_type: str = Form("Unknown"),
-    disease_name: str = Form(""),
-    content: str = Form(""),
-    tags: str = Form(""),
-) -> dict[str, Any]:
-    raw = await file.read()
-    extracted_text = extract_text_from_file(raw=raw, filename=file.filename or "")
-    return create_document(
-        {
-            "title": title or file.filename or "Untitled",
-            "crop_type": crop_type,
-            "disease_name": disease_name,
-            "content": content,
-            "tags": tags,
-            "filename": file.filename or "",
-            "mime_type": file.content_type or "",
-            "extracted_text": extracted_text,
+        # Save file temporarily
+        file_extension = file.filename.split(".")[-1]
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_name = f"upload_{timestamp}.{file_extension}"
+        file_path = UPLOAD_DIR / file_name
+        
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+            
+        logger.info(f"File saved to {file_path}. Running agent...")
+        
+        # Run the agentic workflow
+        # Note: We pass the absolute path for reliability
+        result = await run_agrivision_agent(str(file_path.absolute()))
+        
+        return {
+            "status": "success",
+            "data": result
         }
-    )
+    except Exception as e:
+        logger.error(f"Prediction error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
 
-
-class DocumentImportItem(BaseModel):
-    title: str
-    crop_type: str | None = None
-    disease_name: str | None = None
-    content: str | None = None
-    tags: list[str] | str | None = None
-
-
-@app.post("/api/documents/import")
-async def import_documents(items: list[DocumentImportItem]) -> dict[str, Any]:
-    created: list[dict[str, Any]] = []
-    for item in items:
-        tags_value = item.tags
-        if isinstance(tags_value, list):
-            tags_str = ",".join([t for t in tags_value if t])
-        else:
-            tags_str = tags_value or ""
-
-        created.append(
-            create_document(
-                {
-                    "title": item.title,
-                    "crop_type": item.crop_type or "Unknown",
-                    "disease_name": item.disease_name or "",
-                    "content": item.content or "",
-                    "tags": tags_str,
-                    "filename": "import.json",
-                    "mime_type": "application/json",
-                    "extracted_text": "",
-                }
-            )
-        )
-    return {"created": len(created)}
-
-
-@app.delete("/api/documents/{doc_id}")
-async def remove_document(doc_id: str) -> dict[str, bool]:
-    deleted = delete_document(doc_id)
-    if not deleted:
-        raise HTTPException(status_code=404, detail="Document not found")
-    return {"deleted": True}
-
-
-@app.post("/api/rag/query")
-async def rag_query(payload: RAGQueryRequest) -> dict[str, Any]:
-    crop = payload.cropType or payload.crop_type or ""
-    retrieval = query_documents(
-        question=payload.question,
-        crop_type=crop,
-        disease_name=payload.disease_name or "",
-    )
-    want_llm = bool(payload.llm)
-    if want_llm and is_gemini_configured():
-        try:
-            retrieval["llm"] = generate_rag_answer(
-                question=payload.question,
-                retrieved=retrieval.get("results", []),
-            )
-        except Exception as exc:  # noqa: BLE001
-            retrieval["llm"] = {
-                "enabled": False,
-                "model": "gemini-3.1-flash-lite",
-                "error": str(exc),
+@app.get("/api/predictions/history")
+async def history(
+    skip: int = 0, 
+    limit: int = 20, 
+    db: AsyncSession = Depends(get_db_session)
+) -> dict:
+    predictions = await get_prediction_history(db, skip=skip, limit=limit)
+    
+    # Format for frontend
+    data = []
+    for pred in predictions:
+        item = {
+            "id": pred.id,
+            "image_path": pred.image_path,
+            "predicted_class": pred.predicted_class,
+            "confidence": pred.confidence,
+            "is_disease": pred.is_disease,
+            "created_at": pred.created_at.isoformat(),
+            "treatment": None
+        }
+        if pred.treatment:
+            item["treatment"] = {
+                "treatment_text": pred.treatment.treatment_text,
+                "source": pred.treatment.source
             }
-    else:
-        retrieval["llm"] = {
-            "enabled": False,
-            "model": "gemini-3.1-flash-lite-preview",
+        data.append(item)
+        
+    return {
+        "status": "success",
+        "data": data,
+        "count": len(data)
+    }
+
+@app.get("/api/predictions/{prediction_id}")
+async def prediction_detail(
+    prediction_id: int, 
+    db: AsyncSession = Depends(get_db_session)
+) -> dict:
+    pred = await get_prediction_by_id(db, prediction_id)
+    if not pred:
+        raise HTTPException(status_code=404, detail="Prediction not found")
+        
+    data = {
+        "id": pred.id,
+        "image_path": pred.image_path,
+        "predicted_class": pred.predicted_class,
+        "confidence": pred.confidence,
+        "is_disease": pred.is_disease,
+        "created_at": pred.created_at.isoformat(),
+        "treatment": None
+    }
+    if pred.treatment:
+        data["treatment"] = {
+            "treatment_text": pred.treatment.treatment_text,
+            "source": pred.treatment.source
         }
-    return retrieval
+        
+    return {
+        "status": "success",
+        "data": data
+    }
+
+@app.get("/api/stats")
+async def stats(db: AsyncSession = Depends(get_db_session)) -> dict:
+    stats_data = await get_stats(db)
+    return {
+        "status": "success",
+        "data": stats_data
+    }
+
+@app.get("/api/user/preferences")
+async def user_preferences(db: AsyncSession = Depends(get_db_session)) -> dict:
+    prefs = await get_user_preferences(db)
+    return {
+        "status": "success",
+        "data": {
+            "id": prefs.id,
+            "language": prefs.language,
+            "theme": prefs.theme,
+            "offline_mode": prefs.offline_mode,
+            "notifications_enabled": prefs.notifications_enabled
+        }
+    }
+
+@app.put("/api/user/preferences/{pref_id}")
+async def update_preferences(
+    pref_id: int, 
+    updates: Dict[str, Any], 
+    db: AsyncSession = Depends(get_db_session)
+) -> dict:
+    try:
+        prefs = await update_user_preferences(db, pref_id, updates)
+        return {
+            "status": "success",
+            "data": {
+                "id": prefs.id,
+                "language": prefs.language,
+                "theme": prefs.theme,
+                "offline_mode": prefs.offline_mode,
+                "notifications_enabled": prefs.notifications_enabled
+            }
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

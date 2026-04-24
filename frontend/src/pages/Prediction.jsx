@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Upload, Camera, Loader2, AlertCircle, CheckCircle, Activity, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import Section from '../common/Section';
-import Button from '../common/Button';
-import Card from '../common/Card';
+import Section from '../components/common/Section';
+import Button from '../components/common/Button';
+import Card from '../components/common/Card';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
