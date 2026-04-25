@@ -1,157 +1,79 @@
-# AgriVision Project Context (Updated: 2026-04-24)
+# AgriVision Project Context (Updated: 2026-04-25)
 
-AgriVision is a crop disease detection prototype with:
-- FastAPI backend for prediction, document management, and RAG querying
-- YOLO-based crop + disease workflow with LangGraph routing
-- React + Vite frontend with modular pages/components
-- SQLite local knowledge base for treatment documents
-- Optional Gemini-backed RAG answer generation when API keys are configured
+AgriVision is a crop disease detection web app with:
+- **FastAPI backend** for prediction, chat, document management, and RAG querying
+- **YOLO-based** crop classification + disease detection with LangGraph agent routing
+- **React + Vite + Tailwind CSS** frontend with modular pages/components
+- **SQLite** local database for prediction history and treatment documents
+- **Gemini 3.1 Flash Lite** for RAG answer generation and treatment recommendations
 
 ## Verified Runtime Status
 
 ### Backend
-- Entry: backend/main.py
-- Server command:
-  - & "e:/CSE499 Prototype/.venv/Scripts/python.exe" -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
-- Health endpoint verified:
-  - GET /api/health -> 200 {"status":"ok"}
+- Entry: `backend/main.py`
+- Start: `start_backend.bat` (port 8000)
+- Health: `GET /api/health` → 200
 
-### Models and Prediction
-- Verified with real sample images and explicit MIME upload
-- Prediction endpoint verified:
-  - POST /api/predict -> 200 with success=true
-- Observed successful inference examples:
-  - Brassica sample image routed to Potato model with disease output
-  - Potato sample image detected with disease output
-  - Rice sample image detected with disease output
+### Models
+- Crop Classifier: `backend/models/Models/Crops Classifier/best.pt` (12 MB)
+- Disease Models: Brassica, Corn, Potato, Rice (3–10 MB each)
+- Mappings: GourdGuava→Brassica, Solanacea→Potato, Wheat→Rice
+
+### Prediction Pipeline
+- `POST /api/predict` → uploads image → crop classify → disease detect → Gemini treatment → DB save
+- DB save is non-fatal: predictions succeed even if database has issues
+
+### Chat / AgriBot
+- `POST /api/chat/stream` → SSE streaming chat with optional image upload
+- Uses LangGraph agent workflow with Gemini 3.1 Flash Lite
 
 ### Documents and RAG
-- SQLite knowledge base initialized and working
-- Verified endpoints:
-  - POST /api/documents/import -> created records
-  - GET /api/documents -> returns stored docs
-  - DELETE /api/documents/{id} -> deletion confirmed
-  - POST /api/rag/query with llm=false -> local retrieval results
-  - POST /api/rag/query with llm=true -> Gemini answer generated after dependency fix
-
-### Gemini / API Key Path
-- Environment has GEMINI_API_KEY_* variables in .env
-- Critical fix applied in venv dependencies:
-  - Installed python-dotenv (for loading .env)
-  - Installed google-genai (Gemini client)
-- Result:
-  - LLM path now returns llm.enabled=true and non-empty answer text
+- SQLite knowledge base for treatment documents
+- `POST /api/rag/query` with `llm=true` → Gemini-generated answers from retrieved docs
 
 ## Frontend Status
 
-### Build and Lint
-- Lint command:
-  - npm run lint
-- Build command:
-  - npm run build
-- Build succeeds and produces production bundle in frontend/dist
+### Build
+- Dev: `npm run dev` (port 5173)
+- Build: `npm run build`
 
-### Modularization Update Applied
-The frontend was already componentized, and was further modularized by extracting page-level blocks:
+### Pages
+| Route | File | Status |
+|-------|------|--------|
+| `/` | `frontend/src/pages/Home.jsx` | Redesigned, full-bleed dark |
+| `/predict` | `frontend/src/pages/Prediction.jsx` | Professional upload + results UI |
+| `/history` | `frontend/src/pages/History.jsx` | Redesigned: clean stats, filter tabs, list |
+| `/chat` | `frontend/src/pages/AgriBot.jsx` | Redesigned: ChatGPT-style full-screen chat |
+| `/about` | `frontend/src/pages/About.jsx` | Simple composed page |
 
-- New home components:
-  - frontend/src/components/home/HomeHero.jsx
-  - frontend/src/components/home/FeatureHighlights.jsx
-  - frontend/src/components/home/ScanWorkflowCard.jsx
+### Recent UI Fixes (2026-04-25)
+- Removed double padding from `Layout.jsx` — pages now control their own horizontal padding
+- AgriBot: Full-viewport chat with proper navbar clearance (`pt-20`), centered message column, clean input bar
+- History: `pt-24` header clearance, subtle stat cards (no garish gradients), filter tabs, spacious list items
+- All Gemini references updated to `gemini-3.1-flash-lite-preview`
 
-- New treatments components:
-  - frontend/src/components/treatments/KnowledgeStatusBanner.jsx
-  - frontend/src/components/treatments/RAGQuerySection.jsx
+## Backend Structure
+- `backend/agents/` — LangGraph orchestration (router_agent, chat_agent)
+- `backend/models/` — YOLO model wrappers (crop_classifier, disease_models)
+- `backend/services/` — DB, RAG, Gemini client, image processor
+- `backend/routes/` — API routes (chat)
+- `backend/main.py` — FastAPI app with predict, history, stats endpoints
 
-- Refactored pages:
-  - frontend/src/pages/Home.jsx
-  - frontend/src/pages/Treatments.jsx
+## Frontend Structure
+- `src/pages/` — Route-level composition
+- `src/components/layout/` — Navbar, Footer, Layout shell
+- `src/components/home/` — Hero, feature highlights, scan workflow, results
+- `src/components/prediction/` — Detection result panels, solution cards
+- `src/components/history/` — History list, cards (legacy, now inline in page)
+- `src/components/about/` — About hero, content grid
+- `src/hooks/` — usePrediction, useDiseaseSolution, useRAGQuery, etc.
+- `src/services/` — API clients
+- `src/store/` — App state (theme, language)
 
-- Additional modularization (design-ready split for manual restyling):
-  - frontend/src/pages/History.jsx now composes:
-    - frontend/src/components/history/HistoryHero.jsx
-    - frontend/src/components/history/HistoryListSection.jsx
-    - frontend/src/components/history/HistoryPredictionCard.jsx
-  - frontend/src/pages/About.jsx now composes:
-    - frontend/src/components/about/AboutHero.jsx
-    - frontend/src/components/about/AboutContent.jsx
-  - frontend/src/pages/Treatments.jsx now composes:
-    - frontend/src/components/treatments/TreatmentsHeader.jsx
-    - frontend/src/components/treatments/DocumentToolbar.jsx
-    - frontend/src/components/treatments/DocumentCollectionSection.jsx
-    - frontend/src/components/treatments/UploadDocumentModal.jsx
+## URLs
+- Backend: http://127.0.0.1:8000
+- Frontend: http://localhost:5173
 
-- Home solution flow modularization (auto detect -> API -> solution):
-  - frontend/src/hooks/useDiseaseSolution.js
-  - frontend/src/components/home/ScanExperienceSection.jsx
-  - frontend/src/components/home/InsightRibbon.jsx
-  - frontend/src/components/home/ResultsStage.jsx
-  - frontend/src/components/prediction/DiseaseSolutionPanel.jsx
-
-- Fine-grained prediction module split (copy/paste friendly UI blocks):
-  - frontend/src/components/prediction/DetectionSummaryMetrics.jsx
-  - frontend/src/components/prediction/DetectionPreviewPane.jsx
-  - frontend/src/components/prediction/SolutionLoadingState.jsx
-  - frontend/src/components/prediction/SolutionErrorState.jsx
-  - frontend/src/components/prediction/SolutionNarrativeCard.jsx
-  - frontend/src/components/prediction/SolutionMetaCard.jsx
-  - frontend/src/components/prediction/SolutionEvidenceCard.jsx
-  - frontend/src/components/prediction/DetectionResult.jsx now composes summary + preview blocks
-  - frontend/src/components/prediction/DiseaseSolutionPanel.jsx now composes narrative/meta/evidence/state blocks
-
-This reduces page complexity and makes feature sections easier to maintain/test independently.
-
-## Test Script Update
-
-test_models.py was updated to be a more reliable integration smoke test:
-- Uses real existing image paths
-- Sends explicit image MIME type for /api/predict
-- Validates health, prediction, document import/list, and RAG (LLM enabled)
-
-## Current Folder Structure Guidance
-
-Current structure is good and close to feature-oriented design. Recommended direction:
-
-- Keep backend split by domain:
-  - backend/agents for orchestration logic
-  - backend/models for model wrappers/registry
-  - backend/services for infrastructure adapters (RAG, DB, image IO)
-  - backend/schemas for API contracts
-
-- Keep frontend split by UI surface + behavior:
-  - src/pages for route-level composition only
-  - src/components/<feature> for reusable visual blocks
-  - src/hooks for server-state and workflow hooks
-  - src/services for API clients only
-  - src/store for shared UI/app state
-  - src/utils for pure helpers/constants
-
-Optional next modularization step:
-- Introduce src/features/<feature-name>/ to co-locate feature-specific components, hooks, and helper constants.
-
-## Manual Run Notes
-
-- Backend local URL: http://127.0.0.1:8000
-- Frontend local URL: http://127.0.0.1:5173
-- Keep both servers running in background while manually testing routes:
-  - /
-  - /treatments
-  - /history
-  - /about
-
-## Latest Verification (2026-04-24)
-
-- Frontend route rendering verified in browser:
-  - /treatments loads modular header, toolbar, RAG query section, and document collection section.
-  - /history loads modular history hero and history list section.
-  - /about loads modular hero and about content card grid.
-- Home detect-to-solution pipeline remains active and unchanged in this pass.
-
-- Deeper modular verification:
-  - Prediction result panel renders via nested modular components (summary, preview, loading/error/narrative/meta/evidence).
-
-## Known Notes
-
-- Legacy test calls without MIME type will fail predict endpoint validation by design.
-- Crop label mapping in backend/config.py currently includes fallback mappings (for example Solanacea -> Potato, Wheat -> Rice), so some class outputs are intentionally remapped.
-- Knowledge base currently uses deterministic local retrieval with optional Gemini answer generation layered on top.
+## Notes
+- Prediction DB save errors are logged but do not fail the user-facing prediction
+- Knowledge base uses deterministic local retrieval + optional Gemini generation

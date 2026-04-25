@@ -1,30 +1,35 @@
 /*
-AgriBot Chat Interface - Production Ready
-Real-time chat with image upload and streaming responses
+AgriBot Chat Interface — Clean ChatGPT-Style Design
+Full-screen immersive chat with proper spacing and clean visuals.
 */
 
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Image, X, Bot, User, Loader2, Sparkles } from 'lucide-react';
-import Button from '../components/common/Button';
-import Card from '../components/common/Card';
+import { useState, useRef, useEffect } from "react";
+import { Send, Image, X, Bot, User, Loader2, Leaf } from "lucide-react";
 
 const AgriBotChat = () => {
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [inputMessage, setInputMessage] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isStreaming, setIsStreaming] = useState(false);
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
+  const textareaRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
+    }
+  }, [inputMessage]);
 
   const handleImageSelect = (e) => {
     const file = e.target.files[0];
@@ -34,7 +39,7 @@ const AgriBotChat = () => {
         setSelectedImage({
           file: file,
           preview: reader.result,
-          base64: reader.result.split(',')[1]
+          base64: reader.result.split(",")[1],
         });
       };
       reader.readAsDataURL(file);
@@ -44,7 +49,7 @@ const AgriBotChat = () => {
   const removeImage = () => {
     setSelectedImage(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -53,331 +58,323 @@ const AgriBotChat = () => {
 
     const userMessage = {
       id: Date.now(),
-      type: 'user',
+      type: "user",
       content: inputMessage,
       image: selectedImage?.preview,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputMessage('');
+    setMessages((prev) => [...prev, userMessage]);
+    setInputMessage("");
     setIsLoading(true);
-    setIsStreaming(true);
 
     try {
       const formData = new FormData();
-      formData.append('message', inputMessage || 'Analyze this image');
+      formData.append("message", inputMessage || "Analyze this image");
       if (selectedImage?.file) {
-        formData.append('image', selectedImage.file);
+        formData.append("image", selectedImage.file);
       }
 
-      const response = await fetch('http://localhost:8000/api/chat/stream', {
-        method: 'POST',
-        body: formData
+      const response = await fetch("http://localhost:8000/api/chat/stream", {
+        method: "POST",
+        body: formData,
       });
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let botMessageContent = '';
+      let botMessageContent = "";
       let botMessageId = Date.now() + 1;
 
-      // Add empty bot message placeholder
-      setMessages(prev => [...prev, {
-        id: botMessageId,
-        type: 'bot',
-        content: '',
-        timestamp: new Date().toISOString(),
-        isStreaming: true
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: botMessageId,
+          type: "bot",
+          content: "",
+          timestamp: new Date().toISOString(),
+          isStreaming: true,
+        },
+      ]);
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
         const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
+        const lines = chunk.split("\n");
 
         for (const line of lines) {
-          if (line.startsWith('data: ')) {
+          if (line.startsWith("data: ")) {
             const data = line.slice(6);
-            if (data === '[DONE]') {
-              setIsStreaming(false);
-              // Update message to remove streaming flag
-              setMessages(prev => prev.map(msg => 
-                msg.id === botMessageId ? { ...msg, isStreaming: false } : msg
-              ));
+            if (data === "[DONE]") {
+              setMessages((prev) =>
+                prev.map((msg) =>
+                  msg.id === botMessageId
+                    ? { ...msg, isStreaming: false }
+                    : msg,
+                ),
+              );
             } else {
               try {
                 const parsed = JSON.parse(data);
                 if (parsed.chunk) {
                   botMessageContent += parsed.chunk;
-                  setMessages(prev => prev.map(msg => 
-                    msg.id === botMessageId ? { ...msg, content: botMessageContent } : msg
-                  ));
+                  setMessages((prev) =>
+                    prev.map((msg) =>
+                      msg.id === botMessageId
+                        ? { ...msg, content: botMessageContent }
+                        : msg,
+                    ),
+                  );
                 }
                 if (parsed.error) {
-                  setMessages(prev => prev.map(msg => 
-                    msg.id === botMessageId ? { ...msg, content: `Error: ${parsed.error}`, error: true } : msg
-                  ));
+                  setMessages((prev) =>
+                    prev.map((msg) =>
+                      msg.id === botMessageId
+                        ? {
+                            ...msg,
+                            content: `Error: ${parsed.error}`,
+                            error: true,
+                          }
+                        : msg,
+                    ),
+                  );
                 }
               } catch (e) {
-                console.error('Parse error:', e);
+                console.error("Parse error:", e);
               }
             }
           }
         }
       }
-
     } catch (error) {
-      console.error('Chat error:', error);
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        type: 'bot',
-        content: `Sorry, I encountered an error: ${error.message}`,
-        timestamp: new Date().toISOString(),
-        error: true
-      }]);
-      setIsStreaming(false);
+      console.error("Chat error:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          type: "bot",
+          content: `Sorry, I encountered an error: ${error.message}`,
+          timestamp: new Date().toISOString(),
+          error: true,
+        },
+      ]);
     } finally {
       setIsLoading(false);
       removeImage();
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
+  const suggestions = [
+    { text: "My tomato leaves have brown spots", icon: "🍅" },
+    { text: "Best organic pesticides for rice", icon: "🌾" },
+    { text: "When to apply nitrogen fertilizer?", icon: "🧪" },
+    { text: "Identify wheat rust symptoms", icon: "🍂" },
+  ];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-6rem)] max-w-6xl mx-auto p-4 md:p-6">
-      {/* Header - Glassmorphism */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 rounded-t-3xl p-5 md:p-6 shadow-xl relative overflow-hidden"
-      >
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500"></div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-2xl shadow-inner">
-              <Bot className="w-8 h-8 text-green-600 dark:text-green-400" />
+    <div className="flex flex-col h-[calc(100dvh-5rem)] bg-[#0d1117] text-gray-100 pt-20">
+      {/* Top Bar */}
+      <div className="border-b border-gray-800/60 bg-[#161b22]/80 backdrop-blur-sm">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center">
+              <Bot className="w-4.5 h-4.5 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-600 dark:from-green-400 dark:to-emerald-300">
-                AgriBot
-              </h1>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Expert Agricultural Intelligence</p>
+              <h1 className="text-sm font-semibold text-gray-100">AgriBot</h1>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-[11px] text-gray-400">Online</span>
               </div>
             </div>
           </div>
-          <div className="hidden md:flex items-center gap-3 bg-green-50 dark:bg-green-900/20 px-4 py-2 rounded-full border border-green-100 dark:border-green-800">
-            <Sparkles className="w-4 h-4 text-green-600" />
-            <span className="text-xs font-semibold text-green-700 dark:text-green-300">Gemini 2.0 Pro Powered</span>
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/60 border border-gray-700/40">
+            <Leaf className="w-3 h-3 text-emerald-400" />
+            <span className="text-[11px] text-gray-400 font-medium">
+              Gemini 3.1 Flash Lite
+            </span>
           </div>
         </div>
-      </motion.div>
-
-      {/* Messages Container - Refined Scroll & Visuals */}
-      <div className="flex-1 overflow-hidden relative border-x border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-900/30 backdrop-blur-sm">
-        <div className="h-full overflow-y-auto px-6 py-8 space-y-6 scroll-smooth scrollbar-hide" id="chat-messages">
-          <AnimatePresence mode="popLayout">
-            {messages.length === 0 ? (
-              <motion.div
-                key="welcome"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="flex flex-col items-center justify-center min-h-[400px] text-center"
-              >
-                <div className="w-24 h-24 bg-gradient-to-br from-green-100 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full flex items-center justify-center mb-6 shadow-2xl shadow-green-200/50 dark:shadow-none border border-green-200/30 dark:border-green-800/30">
-                   <Bot className="w-12 h-12 text-green-600 dark:text-green-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">Your Field Assistant Awaits</h3>
-                <p className="text-gray-500 dark:text-gray-400 max-w-sm mb-8 leading-relaxed">
-                  Identify crop diseases instantly, get expert treatment plans, and master your farming with AI.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl">
-                  {[
-                    { text: "My tomato leaves have brown spots", icon: "🍅" },
-                    { text: "Best organic pesticides for rice", icon: "🌾" },
-                    { text: "When to apply nitrogen fertilizer?", icon: "🧪" },
-                    { text: "Identify wheat rust symptoms", icon: "🍂" }
-                  ].map((suggestion, idx) => (
-                    <motion.button
-                      key={idx}
-                      whileHover={{ scale: 1.02, backgroundColor: 'rgba(16, 185, 129, 0.05)' }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setInputMessage(suggestion.text)}
-                      className="p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-sm text-left group transition-all"
-                    >
-                      <span className="mr-2">{suggestion.icon}</span>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">
-                        {suggestion.text}
-                      </span>
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            ) : (
-              messages.map((message) => (
-                <motion.div
-                  key={message.id}
-                  layout
-                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  className={`flex gap-4 ${message.type === 'user' ? 'flex-row-reverse' : ''}`}
-                >
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg transform transition-transform hover:scale-105 ${
-                    message.type === 'user' 
-                      ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white' 
-                      : 'bg-gradient-to-br from-green-500 to-emerald-600 text-white'
-                  }`}>
-                    {message.type === 'user' ? <User className="w-6 h-6" /> : <Bot className="w-6 h-6" />}
-                  </div>
-                  <div className={`max-w-[85%] md:max-w-[75%] ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
-                    {message.image && (
-                      <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="mb-3 inline-block rounded-3xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl"
-                      >
-                        <img 
-                          src={message.image} 
-                          alt="Uploaded" 
-                          className="max-h-64 w-auto object-cover"
-                        />
-                      </motion.div>
-                    )}
-                    <div className={`inline-block p-5 rounded-3xl shadow-sm relative ${
-                      message.type === 'user'
-                        ? 'bg-blue-600 text-white rounded-tr-sm bg-gradient-to-br from-blue-600 to-indigo-600'
-                        : message.error
-                        ? 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border border-red-100 dark:border-red-900/30 rounded-tl-sm'
-                        : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-tl-sm shadow-md'
-                    }`}>
-                      <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap leading-relaxed font-medium">
-                        {message.content}
-                      </div>
-                      {message.isStreaming && (
-                        <div className="flex gap-1 mt-2">
-                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce"></span>
-                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce delay-100"></span>
-                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce delay-200"></span>
-                        </div>
-                      )}
-                    </div>
-                    <div className={`flex items-center gap-2 mt-2 px-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <span>{new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                      {message.type === 'bot' && !message.error && (
-                        <>
-                          <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                          <span className="text-green-500">Verified Diagnosis</span>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              ))
-            )}
-          </AnimatePresence>
-          <div ref={messagesEndRef} className="h-4" />
-        </div>
-        
-        {/* Subtle Overlay Gradient */}
-        <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-gray-50/50 dark:from-gray-900/50 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Input Area - Integrated Glassmorphism */}
-      <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-t-0 border-gray-200/50 dark:border-gray-700/50 rounded-b-3xl p-4 md:p-6 shadow-2xl relative">
-        <AnimatePresence>
+      {/* Messages Area */}
+      <div className="flex-1 overflow-y-auto">
+        {messages.length === 0 ? (
+          /* Welcome Screen */
+          <div className="flex flex-col items-center justify-center min-h-full px-4 py-12">
+            <div className="max-w-xl w-full text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center">
+                <Bot className="w-8 h-8 text-emerald-400" />
+              </div>
+              <h2 className="text-2xl font-semibold text-gray-100 mb-2">
+                How can I help you today?
+              </h2>
+              <p className="text-sm text-gray-400 mb-8">
+                Ask about crop diseases, treatments, or upload a photo for
+                diagnosis.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {suggestions.map((suggestion, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setInputMessage(suggestion.text)}
+                    className="text-left p-4 rounded-xl bg-gray-800/40 border border-gray-700/30 hover:bg-gray-800/70 hover:border-gray-600/40 transition-all group"
+                  >
+                    <span className="text-lg mb-2 block">
+                      {suggestion.icon}
+                    </span>
+                    <span className="text-sm text-gray-300 group-hover:text-gray-100 transition-colors">
+                      {suggestion.text}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Chat Messages */
+          <div className="max-w-5xl mx-auto">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`py-6 px-4 sm:px-8 ${
+                  message.type === "user" ? "bg-transparent" : "bg-gray-800/20"
+                }`}
+              >
+                <div className="max-w-3xl mx-auto flex gap-4">
+                  {/* Avatar */}
+                  <div className="flex-shrink-0 mt-0.5">
+                    {message.type === "user" ? (
+                      <div className="w-7 h-7 rounded-full bg-gray-600 flex items-center justify-center">
+                        <User className="w-3.5 h-3.5 text-gray-200" />
+                      </div>
+                    ) : (
+                      <div className="w-7 h-7 rounded-full bg-emerald-600/20 border border-emerald-500/20 flex items-center justify-center">
+                        <Bot className="w-3.5 h-3.5 text-emerald-400" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xs text-gray-500 mb-1.5 font-medium">
+                      {message.type === "user" ? "You" : "AgriBot"}
+                    </div>
+
+                    {message.image && (
+                      <div className="mb-3 inline-block rounded-xl overflow-hidden border border-gray-700/50 max-w-xs">
+                        <img
+                          src={message.image}
+                          alt="Uploaded"
+                          className="max-h-48 w-auto object-cover"
+                        />
+                      </div>
+                    )}
+
+                    <div
+                      className={`text-[15px] leading-relaxed whitespace-pre-wrap ${
+                        message.error
+                          ? "text-red-400"
+                          : message.type === "user"
+                            ? "text-gray-100"
+                            : "text-gray-300"
+                      }`}
+                    >
+                      {message.content || (
+                        <span className="inline-flex gap-1">
+                          <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" />
+                          <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce delay-75" />
+                          <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce delay-150" />
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} className="h-4" />
+          </div>
+        )}
+      </div>
+
+      {/* Input Area */}
+      <div className="border-t border-gray-800/60 bg-[#0d1117]">
+        <div className="max-w-3xl mx-auto px-4 py-4">
+          {/* Image Preview */}
           {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="absolute bottom-full left-6 mb-4 flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-green-100 dark:border-green-900/30"
-            >
-              <div className="relative group">
-                <img 
-                  src={selectedImage.preview} 
-                  alt="Preview" 
-                  className="w-20 h-20 object-cover rounded-xl border border-gray-200 dark:border-gray-700"
-                />
-                <button
-                  onClick={removeImage}
-                  className="absolute -top-2 -right-2 p-1.5 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600 transition-colors"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              </div>
-              <div className="pr-4">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-tighter mb-1">Upload Ready</p>
-                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 truncate max-w-[150px]">
-                  {selectedImage.file.name}
-                </p>
-              </div>
-            </motion.div>
+            <div className="mb-3 flex items-center gap-3 p-2 pr-4 bg-gray-800/50 rounded-xl border border-gray-700/40 w-fit animate-in fade-in slide-in-from-bottom-2 duration-200">
+              <img
+                src={selectedImage.preview}
+                alt="Preview"
+                className="w-10 h-10 object-cover rounded-lg"
+              />
+              <span className="text-xs text-gray-400 truncate max-w-[180px]">
+                {selectedImage.file.name}
+              </span>
+              <button
+                onClick={removeImage}
+                className="p-1 rounded-md hover:bg-gray-700/50 transition-colors"
+              >
+                <X className="w-3.5 h-3.5 text-gray-400" />
+              </button>
+            </div>
           )}
-        </AnimatePresence>
-        
-        <div className="flex items-center gap-3 md:gap-4 bg-gray-100 dark:bg-gray-900/50 p-2 rounded-2xl border border-gray-200/30 dark:border-gray-700/30">
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleImageSelect}
-            accept="image/*"
-            className="hidden"
-          />
-          
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            disabled={isLoading}
-            className="p-3 text-gray-500 hover:text-green-600 hover:bg-white dark:hover:bg-gray-800 rounded-xl transition-all disabled:opacity-50"
-            title="Upload Crop Image"
-          >
-            <Image className="w-6 h-6" />
-          </button>
-          
-          <textarea
-            rows="1"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-              }
-            }}
-            placeholder="Describe your plant problem..."
-            className="flex-1 py-3 px-2 bg-transparent border-none focus:ring-0 dark:text-white resize-none text-base placeholder:text-gray-400 dark:placeholder:text-gray-600 min-h-[44px] max-h-32"
-            disabled={isLoading}
-          />
-          
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={sendMessage}
-            disabled={isLoading || (!inputMessage.trim() && !selectedImage)}
-            className="flex items-center justify-center w-12 h-12 md:w-auto md:px-6 bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-xl shadow-lg shadow-green-200 dark:shadow-none font-bold transition-all disabled:opacity-50 disabled:grayscale"
-          >
-            {isLoading ? (
-              <Loader2 className="w-6 h-6 animate-spin" />
-            ) : (
-              <>
-                <span className="hidden md:inline mr-2">Send</span>
-                <Send className="w-5 h-5" />
-              </>
-            )}
-          </motion.button>
+
+          {/* Input Box */}
+          <div className="relative flex items-end gap-2 bg-gray-800/50 border border-gray-700/40 rounded-2xl px-3 py-3 focus-within:border-gray-600/50 focus-within:bg-gray-800/70 transition-all">
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleImageSelect}
+              accept="image/*"
+              className="hidden"
+            />
+
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isLoading}
+              className="flex-shrink-0 p-2 text-gray-400 hover:text-emerald-400 transition-colors disabled:opacity-40"
+              title="Upload image"
+            >
+              <Image className="w-5 h-5" />
+            </button>
+
+            <textarea
+              ref={textareaRef}
+              rows={1}
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  sendMessage();
+                }
+              }}
+              placeholder="Message AgriBot..."
+              className="flex-1 bg-transparent border-none focus:ring-0 text-gray-100 text-[15px] placeholder:text-gray-500 resize-none py-1.5 max-h-[200px] outline-none"
+              disabled={isLoading}
+            />
+
+            <button
+              onClick={sendMessage}
+              disabled={isLoading || (!inputMessage.trim() && !selectedImage)}
+              className="flex-shrink-0 p-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:bg-gray-700 disabled:text-gray-500 text-white transition-all disabled:cursor-not-allowed"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Send className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+
+          <p className="text-center text-[11px] text-gray-600 mt-2">
+            AgriBot can make mistakes. Verify critical diagnoses with
+            agricultural experts.
+          </p>
         </div>
-        <p className="mt-3 text-center text-[10px] text-gray-400 dark:text-gray-600 font-medium uppercase tracking-widest">
-          AI can make mistakes. Verify critical diagnosis with agricultural experts.
-        </p>
       </div>
     </div>
   );

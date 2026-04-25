@@ -14,13 +14,15 @@ from config import settings
 
 # Initialize LLM
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
+    model="gemini-3.1-flash-lite-preview",
     temperature=0.7,
-    google_api_key=settings.GEMINI_API_KEY
+    google_api_key=settings.GEMINI_API_KEY,
 )
+
 
 class AgentState(TypedDict):
     """State for the chat agent"""
+
     messages: Sequence[BaseMessage]
     image_data: str | None
     crop_type: str | None
@@ -34,20 +36,26 @@ async def classify_image(state: AgentState) -> dict:
     """Call the crop classifier API if image is present"""
     if not state.get("image_data"):
         return {"crop_type": None, "disease_detected": None}
-    
+
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
                 f"{settings.API_BASE_URL}/predict",
-                files={"file": ("image.jpg", base64.b64decode(state["image_data"]), "image/jpeg")},
-                timeout=30.0
+                files={
+                    "file": (
+                        "image.jpg",
+                        base64.b64decode(state["image_data"]),
+                        "image/jpeg",
+                    )
+                },
+                timeout=30.0,
             )
             result = response.json()
-            
+
             return {
                 "crop_type": result.get("crop_type"),
                 "disease_detected": result.get("disease"),
-                "confidence": result.get("confidence")
+                "confidence": result.get("confidence"),
             }
     except Exception as e:
         print(f"Classification error: {e}")
@@ -58,30 +66,33 @@ async def retrieve_treatments(state: AgentState) -> dict:
     """Retrieve treatment recommendations from database or generate via LLM"""
     disease = state.get("disease_detected")
     crop = state.get("crop_type")
-    
+
     if not disease:
         # No disease detected, provide general care tips
         prompt = f"""Provide general care tips for {crop or 'plants'} in a friendly, helpful tone.
         Keep it concise (3-4 points). Respond in the same language as the user's message."""
-        
+
         response = llm.invoke(prompt)
         return {"treatment_plan": response.content}
-    
+
     try:
         # Try to get from database first
         async with httpx.AsyncClient() as client:
             response = await client.get(
                 f"{settings.API_BASE_URL}/treatments/search",
                 params={"disease": disease, "crop": crop},
-                timeout=5.0
+                timeout=5.0,
             )
             if response.status_code == 200:
                 treatments = response.json()
                 if treatments:
-                    return {"context_docs": treatments, "treatment_plan": treatments[0].get("treatment_details")}
+                    return {
+                        "context_docs": treatments,
+                        "treatment_plan": treatments[0].get("treatment_details"),
+                    }
     except:
         pass
-    
+
     # Fallback: Generate treatment via LLM
     prompt = f"""You are an agricultural expert. Provide detailed treatment recommendations for:
     Crop: {crop or 'Unknown'}
@@ -94,7 +105,7 @@ async def retrieve_treatments(state: AgentState) -> dict:
     4. Prevention tips
     
     Be specific and actionable. Respond in the same language as the user's message."""
-    
+
     response = llm.invoke(prompt)
     return {"treatment_plan": response.content}
 
@@ -105,17 +116,17 @@ async def generate_response(state: AgentState) -> dict:
     treatment = state.get("treatment_plan")
     disease = state.get("disease_detected")
     confidence = state.get("confidence")
-    
+
     if treatment and disease:
         # Append treatment to conversation
         treatment_msg = f"\n\n🔬 **Diagnosis**: {disease}"
         if confidence:
             treatment_msg += f" (Confidence: {confidence:.1%})"
         treatment_msg += f"\n\n💡 **Treatment Plan**:\n{treatment}"
-        
+
         messages_with_treatment = list(messages) + [AIMessage(content=treatment_msg)]
         return {"messages": messages_with_treatment}
-    
+
     # Standard LLM response for general queries
     response = llm.invoke(messages)
     return {"messages": list(messages) + [response]}
@@ -148,9 +159,9 @@ workflow.add_conditional_edges(
     route_message,
     {
         "classify": "retrieve",  # After classification, go to retrieval
-        "retrieve": "respond",   # After retrieval, respond
-        "respond": END           # Direct response ends
-    }
+        "retrieve": "respond",  # After retrieval, respond
+        "respond": END,  # Direct response ends
+    },
 )
 
 # Add edges
