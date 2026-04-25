@@ -1,8 +1,6 @@
 import { AboutHero } from "../components/about/AboutHero";
 import { MissionSection } from "../components/about/MissionSection";
-import { StatsSection } from "../components/about/StatsSection";
-import { TeamSection } from "../components/about/TeamSection";
-import { TechnologyFlow } from "../components/about/TechnologyFlow";
+import { AboutContent } from "../components/about/AboutContent";
 
 export default function About() {
   return (
@@ -14,11 +12,11 @@ export default function About() {
       </div>
 
       <div className="relative z-10">
-        <AboutHero />
+        <div className="max-w-7xl mx-auto px-6 md:px-8 pt-32 pb-12">
+          <AboutHero />
+          <AboutContent />
+        </div>
         <MissionSection />
-        <StatsSection />
-        <TechnologyFlow />
-        <TeamSection />
       </div>
 
       {/* Modern Professional Footer */}
