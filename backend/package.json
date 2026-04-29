@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "vite-plugin-pwa": "^1.2.0"
+  },
+  "dependencies": {
+    "browser-image-compression": "^2.0.2",
+    "react-dropzone": "^15.0.0"
+  }
+}

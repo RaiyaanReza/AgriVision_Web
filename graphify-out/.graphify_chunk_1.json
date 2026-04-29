@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {"id": "backend_fastapi_app", "label": "FastAPI App", "file_type": "code", "source_file": "backend/main.py"},
+    {"id": "backend_agrivision_agent", "label": "AgriVision Agent", "file_type": "code", "source_file": "backend/agents/workflow.py"},
+    {"id": "backend_disease_registry", "label": "Disease Model Registry", "file_type": "code", "source_file": "backend/agents/disease_agent.py"},
+    {"id": "backend_gemini_service", "label": "Gemini Service", "file_type": "code", "source_file": "backend/services/gemini_client.py"},
+    {"id": "backend_vector_store", "label": "Vector Store", "file_type": "code", "source_file": "backend/services/vector_store.py"},
+    {"id": "backend_db_service", "label": "Database Service", "file_type": "code", "source_file": "backend/services/database.py"}
+  ],
+  "edges": [
+    {"source": "backend_fastapi_app", "target": "backend_agrivision_agent", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_agrivision_agent", "target": "backend_disease_registry", "relation": "uses", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_agrivision_agent", "target": "backend_gemini_service", "relation": "uses", "confidence": "INFERRED", "confidence_score": 0.8},
+    {"source": "backend_gemini_service", "target": "google_gemini_api", "relation": "connects_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_vector_store", "target": "backend_gemini_service", "relation": "uses", "confidence": "INFERRED", "confidence_score": 0.7}
+  ],
+  "hyperedges": [],
+  "input_tokens": 1500,
+  "output_tokens": 300
+}

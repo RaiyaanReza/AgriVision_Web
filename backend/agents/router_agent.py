@@ -9,6 +9,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 import base64
 import httpx
+import json
+from pathlib import Path
 from config import settings
 from services.database import (
     get_manual_session,
@@ -95,7 +97,9 @@ async def detect_disease(state: AgentState) -> AgentState:
         ):
             is_disease = False
 
-        predicted_class = f"{crop_type} - {disease_name}" if is_disease else crop_type
+        predicted_class = (
+            f"{crop_type} - {disease_name}" if is_disease else f"{crop_type} - Healthy"
+        )
 
         print(
             f"Disease result: {disease_name} confidence={confidence:.3f} is_disease={is_disease}"
@@ -122,8 +126,31 @@ def route_decision(state: AgentState) -> str:
 
 
 async def fetch_treatment(state: AgentState) -> AgentState:
-    """Node: Use Gemini to generate treatment plan based on disease"""
+    """Node: Fetch treatment plan from local JSON or use Gemini and save it back"""
     disease = state["predicted_class"]
+    crop_type = state.get("crop_type", "")
+
+    # 1. Search local treatments.json
+    treatments_path = Path(__file__).resolve().parent.parent.parent / "treatments.json"
+    local_treatments = []
+    if treatments_path.exists():
+        try:
+            with open(treatments_path, "r", encoding="utf-8") as f:
+                local_treatments = json.load(f)
+        except Exception:
+            pass
+
+    # Check if exact disease exists
+    for item in local_treatments:
+        # predicted_class has format "{crop_type} - {disease_name}"
+        if (
+            item.get("disease_name", "").lower() in disease.lower()
+            and item.get("crop_type", "").lower() in crop_type.lower()
+        ):
+            print(f"Found local treatment for {disease}, skipping Gemini API.")
+            return {**state, "treatment_plan": item.get("content")}
+
+    print(f"No local treatment found for {disease}, querying Gemini.")
 
     prompt = f"""
     You are an expert agricultural scientist. 
@@ -137,7 +164,42 @@ async def fetch_treatment(state: AgentState) -> AgentState:
 
     try:
         response = await llm.ainvoke([HumanMessage(content=prompt)])
-        treatment_plan = response.content
+
+        # Handle cases where response.content might be a list (multimodal/structured)
+        content = response.content
+        if isinstance(content, list):
+            treatment_plan = "".join(
+                [
+                    part.get("text", "") if isinstance(part, dict) else str(part)
+                    for part in content
+                ]
+            )
+        else:
+            treatment_plan = str(content)
+
+        # Append to treatments.json for future use
+        new_id = max([item.get("id", 0) for item in local_treatments], default=0) + 1
+
+        # Extract disease name from predicted_class format: "{crop_type} - {disease_name}"
+        disease_split = disease.split(" - ")
+        disease_name = disease_split[1] if len(disease_split) > 1 else disease
+
+        new_treatment = {
+            "id": new_id,
+            "title": f"{crop_type} - {disease_name} Treatment",
+            "crop_type": crop_type,
+            "disease_name": disease_name,
+            "content": treatment_plan,
+            "tags": [crop_type, disease_name.replace(" ", "_"), "Generated"],
+        }
+
+        local_treatments.append(new_treatment)
+        try:
+            with open(treatments_path, "w", encoding="utf-8") as f:
+                json.dump(local_treatments, f, ensure_ascii=False, indent=2)
+            print(f"Saved new treatment to {treatments_path}")
+        except Exception as e:
+            print(f"Failed to save treatment to {treatments_path}: {e}")
 
         return {**state, "treatment_plan": treatment_plan}
     except Exception as e:

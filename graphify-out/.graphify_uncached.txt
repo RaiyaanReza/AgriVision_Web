@@ -1,0 +1,1019 @@
+E:\CSE499 Prototype\cleanup_project.py
+E:\CSE499 Prototype\backend\config.py
+E:\CSE499 Prototype\backend\main.py
+E:\CSE499 Prototype\backend\__init__.py
+E:\CSE499 Prototype\backend\agents\chat_agent.py
+E:\CSE499 Prototype\backend\agents\disease_agent.py
+E:\CSE499 Prototype\backend\agents\router_agent.py
+E:\CSE499 Prototype\backend\agents\state.py
+E:\CSE499 Prototype\backend\agents\workflow.py
+E:\CSE499 Prototype\backend\agents\__init__.py
+E:\CSE499 Prototype\backend\models\crop_classifier.py
+E:\CSE499 Prototype\backend\models\database.py
+E:\CSE499 Prototype\backend\models\disease_models.py
+E:\CSE499 Prototype\backend\models\models.py
+E:\CSE499 Prototype\backend\models\__init__.py
+E:\CSE499 Prototype\backend\routes\chat.py
+E:\CSE499 Prototype\backend\routes\__init__.py
+E:\CSE499 Prototype\backend\schemas\response.py
+E:\CSE499 Prototype\backend\schemas\__init__.py
+E:\CSE499 Prototype\backend\services\database.py
+E:\CSE499 Prototype\backend\services\gemini_client.py
+E:\CSE499 Prototype\backend\services\image_processor.py
+E:\CSE499 Prototype\backend\services\knowledge_base.py
+E:\CSE499 Prototype\backend\services\vector_store.py
+E:\CSE499 Prototype\backend\services\__init__.py
+E:\CSE499 Prototype\backend\tests\test_healthy.py
+E:\CSE499 Prototype\backend\tests\test_models.py
+E:\CSE499 Prototype\backend\utils\__init__.py
+E:\CSE499 Prototype\frontend\eslint.config.js
+E:\CSE499 Prototype\frontend\vite.config.js
+E:\CSE499 Prototype\frontend\src\App.jsx
+E:\CSE499 Prototype\frontend\src\main.jsx
+E:\CSE499 Prototype\frontend\src\service-worker.js
+E:\CSE499 Prototype\frontend\src\components\about\AboutContent.jsx
+E:\CSE499 Prototype\frontend\src\components\about\AboutHero.jsx
+E:\CSE499 Prototype\frontend\src\components\about\MissionSection.jsx
+E:\CSE499 Prototype\frontend\src\components\common\Button.jsx
+E:\CSE499 Prototype\frontend\src\components\common\Card.jsx
+E:\CSE499 Prototype\frontend\src\components\common\index.js
+E:\CSE499 Prototype\frontend\src\components\common\LanguageSwitcher.jsx
+E:\CSE499 Prototype\frontend\src\components\common\Section.jsx
+E:\CSE499 Prototype\frontend\src\components\documents\DocumentCard.jsx
+E:\CSE499 Prototype\frontend\src\components\documents\DocumentTable.jsx
+E:\CSE499 Prototype\frontend\src\components\documents\DocumentUploadForm.jsx
+E:\CSE499 Prototype\frontend\src\components\effects\AnimatedBackground.jsx
+E:\CSE499 Prototype\frontend\src\components\history\HistoryHero.jsx
+E:\CSE499 Prototype\frontend\src\components\history\HistoryListSection.jsx
+E:\CSE499 Prototype\frontend\src\components\history\HistoryPredictionCard.jsx
+E:\CSE499 Prototype\frontend\src\components\home\FeatureHighlights.jsx
+E:\CSE499 Prototype\frontend\src\components\home\HomeHero.jsx
+E:\CSE499 Prototype\frontend\src\components\home\InsightRibbon.jsx
+E:\CSE499 Prototype\frontend\src\components\home\ResultsStage.jsx
+E:\CSE499 Prototype\frontend\src\components\home\ScanExperienceSection.jsx
+E:\CSE499 Prototype\frontend\src\components\home\ScanWorkflowCard.jsx
+E:\CSE499 Prototype\frontend\src\components\layout\Footer.jsx
+E:\CSE499 Prototype\frontend\src\components\layout\index.js
+E:\CSE499 Prototype\frontend\src\components\layout\Layout.jsx
+E:\CSE499 Prototype\frontend\src\components\layout\MobileNav.jsx
+E:\CSE499 Prototype\frontend\src\components\layout\Navbar.jsx
+E:\CSE499 Prototype\frontend\src\components\layout\ScrollToTop.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\BoundingBoxOverlay.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\ConfidenceBar.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\DetectionPreviewPane.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\DetectionResult.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\DetectionSummaryMetrics.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\DiseaseSolutionPanel.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\ImageUploadZone.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\SolutionErrorState.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\SolutionEvidenceCard.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\SolutionLoadingState.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\SolutionMetaCard.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\SolutionNarrativeCard.jsx
+E:\CSE499 Prototype\frontend\src\components\prediction\TreatmentSuggestion.jsx
+E:\CSE499 Prototype\frontend\src\components\treatments\DocumentCollectionSection.jsx
+E:\CSE499 Prototype\frontend\src\components\treatments\DocumentToolbar.jsx
+E:\CSE499 Prototype\frontend\src\components\treatments\KnowledgeStatusBanner.jsx
+E:\CSE499 Prototype\frontend\src\components\treatments\RAGQuerySection.jsx
+E:\CSE499 Prototype\frontend\src\components\treatments\TreatmentsHeader.jsx
+E:\CSE499 Prototype\frontend\src\components\treatments\UploadDocumentModal.jsx
+E:\CSE499 Prototype\frontend\src\components\ui\Badge.jsx
+E:\CSE499 Prototype\frontend\src\components\ui\Button.jsx
+E:\CSE499 Prototype\frontend\src\components\ui\Card.jsx
+E:\CSE499 Prototype\frontend\src\components\ui\LoadingSpinner.jsx
+E:\CSE499 Prototype\frontend\src\components\ui\Modal.jsx
+E:\CSE499 Prototype\frontend\src\hooks\index.js
+E:\CSE499 Prototype\frontend\src\hooks\useDiseaseSolution.js
+E:\CSE499 Prototype\frontend\src\hooks\useDocuments.js
+E:\CSE499 Prototype\frontend\src\hooks\useOffline.js
+E:\CSE499 Prototype\frontend\src\hooks\usePrediction.js
+E:\CSE499 Prototype\frontend\src\hooks\useRAGQuery.js
+E:\CSE499 Prototype\frontend\src\i18n\index.js
+E:\CSE499 Prototype\frontend\src\pages\About.jsx
+E:\CSE499 Prototype\frontend\src\pages\AgriBot.jsx
+E:\CSE499 Prototype\frontend\src\pages\CropLibrary.jsx
+E:\CSE499 Prototype\frontend\src\pages\Dashboard.jsx
+E:\CSE499 Prototype\frontend\src\pages\History.jsx
+E:\CSE499 Prototype\frontend\src\pages\Home.jsx
+E:\CSE499 Prototype\frontend\src\pages\Prediction.jsx
+E:\CSE499 Prototype\frontend\src\pages\Settings.jsx
+E:\CSE499 Prototype\frontend\src\pages\Treatments.jsx
+E:\CSE499 Prototype\frontend\src\services\api.js
+E:\CSE499 Prototype\frontend\src\services\documentService.js
+E:\CSE499 Prototype\frontend\src\services\predictionService.js
+E:\CSE499 Prototype\frontend\src\store\index.js
+E:\CSE499 Prototype\frontend\src\store\languageStore.js
+E:\CSE499 Prototype\frontend\src\store\useAppStore.js
+E:\CSE499 Prototype\frontend\src\utils\constants.js
+E:\CSE499 Prototype\frontend\src\utils\formatters.js
+E:\CSE499 Prototype\PROJECT_CONTEXT_Important.md
+E:\CSE499 Prototype\README.md
+E:\CSE499 Prototype\UI_ENGINEER_GUIDE.md
+E:\CSE499 Prototype\USER_MANUAL.md
+E:\CSE499 Prototype\backend\requirements.txt
+E:\CSE499 Prototype\frontend\index.html
+E:\CSE499 Prototype\frontend\README.md
+E:\CSE499 Prototype\frontend\public\index.html
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Alternaria_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Black_Rot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Downy_Mildew\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Downy_Mildew\0002.webp
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Downy_Mildew\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Downy_Mildew\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Downy_Mildew\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cabbage__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Alternaria_Disease\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Soft_Rot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0001.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0002.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0004.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Bacterial_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Black_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Downy_Mildew\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0001.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0005.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Healthy\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Cauliflower__Nutrient_Deficiency\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Bacterial_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Cercospora_Leaf_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Curl_Virus\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Chili__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Insect_Pest_Disease\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Leaf_Spot_Disease\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Mosaic_Virus_Disease\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Eggplant__Wilt_Disease\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Alternaria_Leaf_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0001.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0002.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0005.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0007.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Downy_Mildew\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0001.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0002.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0004.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0005.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0006.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0007.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0008.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0002.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0003.png
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Gourd__Mosaic_Virus\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Algal_Leaf_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Dry_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Healthy\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Insect_Pest_Disease\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Guava__Red_Rust\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Early_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Potato__Late_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Bacterial_Leaf_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Brown_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Blast\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Leaf_Scald\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Rice_Hispa\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Rice__Sheath_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Bacterial_Spot\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Early_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0009.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Late_Blight\0010.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0001.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0002.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0003.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0004.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0005.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0006.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0007.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0008.jpg
+E:\CSE499 Prototype\backend\models\Models\Test Images\Tomato__Mosaic_Virus\0009.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260424_235810.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_000059.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_000348.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_021133.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_083408.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_105216.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_105238.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110124.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110137.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110139.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110142.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110229.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110248.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110251.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110838.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110841.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_110844.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_111021.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_111038.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_111041.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_113514.jpg
+E:\CSE499 Prototype\backend\uploads\upload_20260425_121358.webp
+E:\CSE499 Prototype\frontend\public\favicon.svg
+E:\CSE499 Prototype\frontend\public\icons.svg
+E:\CSE499 Prototype\frontend\public\pwa-192x192.png
+E:\CSE499 Prototype\frontend\public\pwa-512x512.png
+E:\CSE499 Prototype\frontend\src\assets\hero.png
+E:\CSE499 Prototype\frontend\src\assets\react.svg
+E:\CSE499 Prototype\frontend\src\assets\vite.svg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Alternaria_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Black_Rot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Downy_Mildew\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Downy_Mildew\0002.webp
+E:\CSE499 Prototype\models\Test Images\Cabbage__Downy_Mildew\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Downy_Mildew\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Downy_Mildew\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cabbage__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Alternaria_Disease\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Soft_Rot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0001.png
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0002.png
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0004.png
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Bacterial_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Black_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Downy_Mildew\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0001.png
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0005.png
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Healthy\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Cauliflower__Nutrient_Deficiency\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Bacterial_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Cercospora_Leaf_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Curl_Virus\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Chili__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Insect_Pest_Disease\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Leaf_Spot_Disease\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Mosaic_Virus_Disease\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Eggplant__Wilt_Disease\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Alternaria_Leaf_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0001.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0002.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0005.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0007.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Downy_Mildew\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0001.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0002.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0004.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0005.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0006.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0007.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0008.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0002.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0003.png
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Gourd__Mosaic_Virus\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Algal_Leaf_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Dry_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Healthy\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Insect_Pest_Disease\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Guava__Red_Rust\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Early_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Potato__Late_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Bacterial_Leaf_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Brown_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Blast\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Leaf_Scald\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Narrow_Brown_Leaf_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Rice_Hispa\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Rice__Sheath_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Bacterial_Spot\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Early_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Healthy_Leaf\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0009.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Late_Blight\0010.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0001.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0002.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0003.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0004.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0005.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0006.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0007.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0008.jpg
+E:\CSE499 Prototype\models\Test Images\Tomato__Mosaic_Virus\0009.jpg

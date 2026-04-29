@@ -6,10 +6,14 @@ from pydantic_settings import BaseSettings
 from typing import List, Dict
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODELS_DIR = Path(__file__).resolve().parent / "models" / "Models"
+
+# Explicitly load .env so os.environ is populated before BaseSettings reads it
+load_dotenv(dotenv_path=str(BASE_DIR / ".env"))
 
 
 class Settings(BaseSettings):
@@ -17,6 +21,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "AgriVision"
     VERSION: str = "2.0.0"
     API_PREFIX: str = "/api"
+    API_BASE_URL: str = "http://localhost:8000"
 
     # Server
     HOST: str = "0.0.0.0"
@@ -35,8 +40,10 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./agrivision.db"
 
-    # AI/ML
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
+    # AI/ML — use GEMINI_API_KEY_1 from .env, fallback to GEMINI_API_KEY
+    GEMINI_API_KEY: str = (
+        os.getenv("GEMINI_API_KEY_1") or os.getenv("GEMINI_API_KEY") or ""
+    )
     MODEL_THRESHOLD: float = 0.5
 
     # Model Paths
@@ -64,7 +71,7 @@ class Settings(BaseSettings):
     ALLOWED_EXTENSIONS: List[str] = ["jpg", "jpeg", "png", "webp"]
 
     class Config:
-        env_file = ".env"
+        env_file = str(Path(__file__).resolve().parent.parent / ".env")
         case_sensitive = True
         extra = "ignore"
 

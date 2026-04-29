@@ -1,6 +1,13 @@
 import os
 import re
 from typing import Any
+from pathlib import Path
+
+# Ensure .env is loaded so os.environ contains GEMINI_API_KEY_* values
+from dotenv import load_dotenv
+
+# Load from project root (one level above backend/)
+load_dotenv(dotenv_path=str(Path(__file__).resolve().parent.parent.parent / ".env"))
 
 
 def _list_gemini_api_keys() -> list[str]:
@@ -64,6 +71,51 @@ def _build_prompt(question: str, retrieved: list[dict[str, Any]]) -> str:
     )
 
 
+def generate_chat_completion(
+    messages: list[str],
+) -> dict[str, Any]:
+    """
+    Generate a chat completion using Gemini with key rotation.
+    Accepts a list of message strings (alternating user/assistant).
+    """
+    api_keys = _list_gemini_api_keys()
+    if not api_keys:
+        return {"enabled": False, "error": "Gemini API key not configured."}
+
+    from google import genai  # type: ignore
+    from google.genai import types  # type: ignore
+
+    model = "gemini-3.1-flash-lite-preview"
+    prompt = "\n\n".join(messages)
+
+    last_error: str | None = None
+    for api_key in api_keys:
+        try:
+            client = genai.Client(
+                api_key=api_key,
+                http_options=types.HttpOptions(api_version="v1beta"),
+            )
+            response = client.models.generate_content(model=model, contents=prompt)
+            text = getattr(response, "text", None) or ""
+            return {"enabled": True, "model": model, "text": text.strip()}
+        except Exception as exc:  # noqa: BLE001
+            error_text = str(exc)
+            last_error = error_text
+            if "CONSUMER_SUSPENDED" in error_text or (
+                "Consumer" in error_text and "suspended" in error_text
+            ):
+                continue
+            if "PERMISSION_DENIED" in error_text or "RESOURCE_EXHAUSTED" in error_text:
+                continue
+            break
+
+    return {
+        "enabled": False,
+        "model": model,
+        "error": last_error or "Gemini call failed.",
+    }
+
+
 def generate_rag_answer(
     question: str, retrieved: list[dict[str, Any]]
 ) -> dict[str, Any]:
@@ -78,8 +130,6 @@ def generate_rag_answer(
     from google import genai  # type: ignore
     from google.genai import types  # type: ignore
 
-    # Gemini 3.1 Flash-Lite is currently served under the preview model ID.
-    # We keep this pinned (as requested) for deterministic behavior.
     model = "gemini-3.1-flash-lite-preview"
 
     prompt = _build_prompt(question=question, retrieved=retrieved)

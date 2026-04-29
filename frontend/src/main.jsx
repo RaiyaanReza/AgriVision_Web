@@ -26,15 +26,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>,
 );
 
-// Register service worker for PWA offline support
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+// Register service worker for PWA offline support.
+// In dev, Vite serves index.html for unknown paths, causing MIME errors.
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
       .then((registration) => {
-        console.log('SW registered:', registration);
+        console.log("SW registered:", registration);
       })
       .catch((error) => {
-        console.log('SW registration failed:', error);
+        console.log("SW registration failed:", error);
       });
   });
 }

@@ -1,0 +1,19 @@
+{
+  "nodes": [
+    {"id": "project_agrivision", "label": "AgriVision Project", "file_type": "document", "source_file": "PROJECT_CONTEXT_Important.md"},
+    {"id": "frontend_react_app", "label": "React Frontend", "file_type": "code", "source_file": "frontend/src/App.jsx"},
+    {"id": "yolo_crop_classifier", "label": "YOLO Crop Classifier", "file_type": "document", "source_file": "PROJECT_CONTEXT_Important.md"},
+    {"id": "yolo_disease_models", "label": "YOLO Disease Models", "file_type": "document", "source_file": "PROJECT_CONTEXT_Important.md"},
+    {"id": "db_sqlite", "label": "SQLite Database", "file_type": "document", "source_file": "PROJECT_CONTEXT_Important.md"}
+  ],
+  "edges": [
+    {"source": "project_agrivision", "target": "frontend_react_app", "relation": "contains", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_fastapi_app", "target": "yolo_crop_classifier", "relation": "loads", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_fastapi_app", "target": "yolo_disease_models", "relation": "loads", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_fastapi_app", "target": "db_sqlite", "relation": "persists_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "frontend_react_app", "target": "backend_fastapi_app", "relation": "consumes_api", "confidence": "EXTRACTED", "confidence_score": 1.0}
+  ],
+  "hyperedges": [],
+  "input_tokens": 1000,
+  "output_tokens": 250
+}
